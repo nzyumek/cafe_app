@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cafe_list.title %>
+</p>
+
+<p>
+  <strong>Bean:</strong>
+  <%= @cafe_list.bean %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @cafe_list.location %>
+</p>
+
+<%= link_to 'Edit', edit_cafe_list_path(@cafe_list) %> |
+<%= link_to 'Back', cafe_lists_path %>
