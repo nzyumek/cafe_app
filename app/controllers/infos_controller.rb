@@ -4,7 +4,7 @@ class InfosController < ApplicationController
   # GET /infos
   # GET /infos.json
   def index
-    @infos = Info.all
+    @infos = @cafe_list.info.all
   end
 
   # GET /infos/1
@@ -14,17 +14,20 @@ class InfosController < ApplicationController
 
   # GET /infos/new
   def new
-    @info = Info.new
+    @info = @cafe_list.info.new
   end
 
   # GET /infos/1/edit
   def edit
   end
 
+  def sort
+  end
+  
   # POST /infos
   # POST /infos.json
   def create
-    @info = Info.new(info_params)
+    @info = @cafe_list.info.new(info_params)
 
     respond_to do |format|
       if @info.save
@@ -64,7 +67,7 @@ class InfosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_info
-      @info = Info.find(params[:id])
+      @info = @cafe_list.info.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
