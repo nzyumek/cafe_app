@@ -1,0 +1,39 @@
+<div class="card mt-2 info-card <%=" text-muted bg-light" if info.done %>"
+  data-model_name="<%= info.model_name.singular %>"
+  data-cafe_list_id="<%= info.cafe_list.id %>"
+  data-id="<%= info.id %>">
+  <div class="card-body pr-1">
+    <div class="card-text pr-4">
+      <%= info.done ? tag.del(){simple_format info.content} : (simple_format info.content) %>
+    </div>
+    <div class="btn-group position-absolute" style="top: 10px; right: 4px">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right text-middle">
+        <%= form_with(model: info, url: [info.cafe_list, info], remote: true) do |form| %>
+          <% if info.done %>
+            <%= form.hidden_field :done, value: false, readonly: true %>
+            <%= form.submit "未完了", class: "dropdown-item text-success" %>
+          <% else %>
+            <%= form.hidden_field :done, value: true, readonly: true %>
+            <%= form.submit "完了！", class: "dropdown-item text-success" %>
+          <% end %>
+        <% end %>
+        <div class="dropdown-divider"></div>
+        <%= link_to "並びかえ", sort_cafe_list_info_path(info.cafe_list, info), class: "dropdown-item", remote: true %>
+        <%= link_to "編集", edit_cafe_list_info_path(info.cafe_list, info), class: "dropdown-item", remote: true %>
+        <%= link_to "削除",
+            cafe_list_info_path(info.cafe_list, info),
+            method: :delete,
+            class: "dropdown-item text-danger",
+            remote: true, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    <div class="card-text">
+      <small class="text-muted">
+        <%= info.created_at.strftime('%Y/%m/%d') %>
+      </small>
+    </div>
+  </div>
+</div>

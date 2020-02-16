@@ -1,0 +1,49 @@
+<div class="modal fade" id="cafe_listModal" tabindex="-1" role="dialog" aria-labelledby="cafe_listModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_with(model: info, url: [cafe_list, info], remote: true, class: "") do |form| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="cafe_listModal">並びかえ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <% if info.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(info.errors.count, "error") %> prohibited this info from being saved:</h2>
+              <ul>
+                <% info.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="card my-2">
+            <div class="card-body">
+              <div class="card-text">
+                <%= info.done ? tag.del(){simple_format info.content} : (simple_format info.content) %>
+              </div>
+              <div class="card-text">
+                <small class="text-muted">
+                  <%= l(info.created_at, format: :short) if info.created_at.present? %>
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <%= form.label :position, class: "d-none"  %>
+            <%= form.select  :position,
+              (1..cafe_list.infos.length).map {|i| [i, i] },
+              { selected: cafe_list.infos.index(info) + 1 },
+              class: "d-inline w-auto" %>番目に移動
+          </div>
+          <div class="modal-footer actions">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= form.submit %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
