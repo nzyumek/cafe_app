@@ -58,3 +58,8 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 gem 'acts_as_list', '~> 0.9.19'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end

@@ -1,0 +1,14 @@
+// modalを閉じる処理
+$("#cafe_listModal").modal("hide");
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+
+
+// Rails @status => true 画面の書き換え : false モーダルを再度表示
+// <% if @status %>
+$("#cafe_listsIndex").append("<%= j(render @cafe_list) %>");
+
+// <% else %>
+$("#modalArea").html("<%= j(render 'cafe_lists/form', cafe_list: @cafe_list) %>")
+$("#modalArea").find(".modal").modal('show')
+// <% end %>

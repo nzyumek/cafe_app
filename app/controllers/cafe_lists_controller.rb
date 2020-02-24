@@ -4,8 +4,28 @@ class CafeListsController < ApplicationController
   # GET /cafe_lists
   # GET /cafe_lists.json
   def index
-    @cafe_lists = CafeList.all
+    #if !params[:q].blank? #nil または空文字じゃなかった場合
+      #@cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
+      #@cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ?", "%" + params[:q] + "%", "%" + params[:b] + "%")
+   #else
+      #@cafe_lists = CafeList.all
+    ##@search_params = cafe_list_search_params
+    ##@cafe_lists = Cafe_list.search(@search_params).includes(:prefecture)
+      if params[:q]
+        @cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
+      else
+        @cafe_lists = CafeList.all
+    end
   end
+  
+  def search
+      @cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
+      @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ?", "%" + params[:q] + "%", "%" + params[:b] + "%")
+  end
+
+  # def cafe_list_search_params
+    # params.fetch(:search, {}).permit(:title, :bean, :location)
+  # end
 
   # GET /cafe_lists/1
   # GET /cafe_lists/1.json
@@ -28,7 +48,7 @@ class CafeListsController < ApplicationController
 
     respond_to do |format|
       if @cafe_list.save
-        format.html { redirect_to @cafe_list, notice: 'Cafe list was successfully created.' }
+        format.html { redirect_to @cafe_list, notice: 'Cafe was successfully created.' }
         format.json { render :show, status: :created, location: @cafe_list }
       else
         format.html { render :new }
@@ -42,7 +62,7 @@ class CafeListsController < ApplicationController
   def update
     respond_to do |format|
       if @cafe_list.update(cafe_list_params)
-        format.html { redirect_to @cafe_list, notice: 'Cafe list was successfully updated.' }
+        format.html { redirect_to @cafe_list, notice: 'Cafe was successfully updated.' }
         format.json { render :show, status: :ok, location: @cafe_list }
       else
         format.html { render :edit }

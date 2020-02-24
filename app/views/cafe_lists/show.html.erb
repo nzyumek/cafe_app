@@ -1,0 +1,16 @@
+<h3><%= @cafe_list.title %></h3>
+<div class="row">
+    <div class="col-sm">
+        写真ここに入る<br />
+      <%= @cafe_list.title %>
+    </div>
+    <div class="col-sm">
+      Cafe Name: <%= @cafe_list.title %><br />
+      Bean: <%= @cafe_list.bean %><br />
+      Location: <%= @cafe_list.location %>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12964.797833098946!2d139.69059616327286!3d35.672090441922975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f34ad0922653%3A0xda43dda9ba85f9eb!2sLittle%20Nap%20Coffee%20Stand!5e0!3m2!1sja!2sjp!4v1582337790380!5m2!1sja!2sjp" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</div>
+
+<%= link_to 'Edit', edit_cafe_list_path(@cafe_list) %> |
+<%= link_to 'Back', cafe_lists_path %>
