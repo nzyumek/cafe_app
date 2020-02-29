@@ -11,17 +11,23 @@ class CafeListsController < ApplicationController
       #@cafe_lists = CafeList.all
     ##@search_params = cafe_list_search_params
     ##@cafe_lists = Cafe_list.search(@search_params).includes(:prefecture)
-      if params[:q]
-        @cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
-      else
-        @cafe_lists = CafeList.all
-    end
+    
+    #三項演算子20200226
+    params[:title].blank? ? params[:title]="" : params[:title]
+    params[:bean].blank? ? params[:bean]="" : params[:bean]
+    params[:location].blank? ? params[:location]="" : params[:location]
+    
+    @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ? AND location LIKE ?", "%" + params[:title] + "%", "%" + params[:bean] + "%", "%" + params[:location] + "%")
+    #elsif params[:bean]
+      #  @cafe_lists = CafeList.where("bean LIKE ?", "%" + params[:bean] + "%")
+    #elsif params[:location]
+     #   @cafe_lists = CafeList.where("location LIKE ?", "%" + params[:location] + "%")
   end
   
-  def search
-      @cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
-      @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ?", "%" + params[:q] + "%", "%" + params[:b] + "%")
-  end
+  #def search
+    #  @cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
+   #   @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ?", "%" + params[:q] + "%", "%" + params[:b] + "%")
+  #end
 
   # def cafe_list_search_params
     # params.fetch(:search, {}).permit(:title, :bean, :location)
@@ -49,7 +55,7 @@ class CafeListsController < ApplicationController
     respond_to do |format|
       if @cafe_list.save
         format.html { redirect_to @cafe_list, notice: 'Cafe was successfully created.' }
-        format.json { render :show, status: :created, location: @cafe_list }
+        format.json { render :show, status: :created, location: @cafe_list}
       else
         format.html { render :new }
         format.json { render json: @cafe_list.errors, status: :unprocessable_entity }
@@ -89,6 +95,6 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location)
+      params.require(:cafe_list).permit(:title, :bean, :location, :location_url)
     end
 end

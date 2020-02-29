@@ -1,14 +1,19 @@
 <h1>Cafes</h1>
-#
 
   <table class="table">
     <thead>
       <nav class="navbar navbar-light bg-light">
-        <%= form_with url:'/cafe_lists', method: :get, local: true do |f| %>
-          <%= f.label :q, 'Search title' %>
-          <%= f.text_field :q %>
-          <%= f.submit 'Search' %> <%= link_to 'Clear', cafe_lists_path %>
-        <% end %>
+
+          <%= form_with(url: cafe_lists_path, model: @cafe_list, local: true, method: :get) do |f| %>
+            <%= f.text_field :title %>
+            <%= f.text_field :bean %>
+            <%= f.text_field :location %>
+            <%= f.text_field :location_url %>
+            <%= f.submit 'Search', :name => nil %>
+          <% end %>
+                    
+          <%= link_to 'Clear', cafe_lists_path %>
+          
       </nav>
       <tr>
         <th scope="col">#</th>
