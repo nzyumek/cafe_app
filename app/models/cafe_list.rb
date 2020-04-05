@@ -4,4 +4,5 @@ class CafeList < ApplicationRecord
     #scope :title_like, -> (title) { where('title LIKE ?', "%#{title}%") if title.present? }
     #scope :bean_like, -> (bean) { where('bean LIKE ?', "%#{bean}%") if bean.present? }
     #scope :location_like, -> (location) { where('location LIKE ?', "%#{location}%") if location.present? }
+    mount_uploader :image, ImageUploader
 end

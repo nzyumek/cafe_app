@@ -1,13 +1,17 @@
 <h3><%= @cafe_list.title %></h3>
 <div class="row">
     <div class="col-sm">
-      <%= image_tag '<%= @cafe_list.picture_cafe %>', class: 'card-img-top', alt: "" %>
+      <% if @cafe_list.image? %>
+        <%= image_tag @cafe_list.image.url %>
+      <% end %>
       <%= @cafe_list.title %>
     </div>
     <div class="col-sm">
       Cafe Name: <%= @cafe_list.title %><br />
       Bean: <%= @cafe_list.bean %><br />
       Location: <%= @cafe_list.location %><br />
+      Url: <a href="<%= @cafe_list.url %> class="text-dark><%= @cafe_list.url %></a><br />
+      Info: <%= @cafe_list.info %><br />
     </div>
     <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 </div>

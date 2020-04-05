@@ -95,6 +95,6 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location, :picture_cafe)
+      params.require(:cafe_list).permit(:title, :bean, :location, :image, :url, :info)
     end
 end

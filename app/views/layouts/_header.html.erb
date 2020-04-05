@@ -14,25 +14,25 @@
     <div class= "collapse navbar-collapse" id= "navbarSupportedContent">
         <ul class = "navbar-nav mr-4">
             <li id="menu-item-444" class="menu-item mr-2">
-                <%= link_to "About", cafe_lists_path, class:"btn btn-outline-info"%>
+                <%= link_to "About", cafe_lists_path, class:"btn btn-outline-secondary"%>
             </li>
             <li id="menu-item-444" class="menu-item mr-2">
-                <%= link_to "Cafe List", cafe_lists_path, class:"btn btn-success" %>
+                <%= link_to "Cafe List", cafe_lists_path, class:"btn btn-outline-secondary" %>
             </li>
             <li id="menu-item-444" class="menu-item mr-2">
-                <%= link_to "About the Beans", cafe_lists_path, class:"btn btn-success" %>
+                <%= link_to "About the Beans", cafe_lists_path, class:"btn btn-outline-secondary" %>
             </li>
             <%  if user_signed_in?  %>
-                <li class="nav-item">
-                    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                <li class="menu-item mr-2">
+                    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
                 </li>
 
             <% else %>
-                <li class="nav-item">
-                    <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+                <li class="menu-item mr-2">
+                    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary" %>
                 </li>
-                <li class="nav-item">
-                    <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+                <li class="menu-item mr-2">
+                    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-secondary" %>
                 </li>
             <% end %>
         </ul>

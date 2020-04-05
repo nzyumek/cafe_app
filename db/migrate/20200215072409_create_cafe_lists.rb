@@ -4,7 +4,7 @@ class CreateCafeLists < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :bean
       t.string :location
-      t.string :location_url
+      t.string :image
 
       t.timestamps
     end
