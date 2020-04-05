@@ -12,6 +12,14 @@ module Cafe
     config.load_defaults 6.0
     
     config.hosts << "094f566fa34c47d4986402940b686339.vfs.cloud9.us-west-2.amazonaws.com"
+    
+    config.to_prepare do
+       Devise::SessionsController.layout "devise"
+       Devise::RegistrationsController.layout "devise"
+       Devise::ConfirmationsController.layout "devise"
+       Devise::UnlocksController.layout "devise"
+       Devise::PasswordsController.layout "devise"
+     end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

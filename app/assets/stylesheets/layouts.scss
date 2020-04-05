@@ -1,13 +1,30 @@
 main {
-  height: calc(100vh - 50px);
-  min-height: calc(100vh - 50px);
+  // height: calc(100vh - 50px);
+  // min-height: calc(100vh - 50px);
   padding-top: 60px;
 }
 
 footer {
-  height: 50px;
+  height: 100px;
 }
 
 .bg-home {
   background-color: #1e90ff;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #242424;
+}
+ 
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.carousel{
+  min-height: 180px;
 }

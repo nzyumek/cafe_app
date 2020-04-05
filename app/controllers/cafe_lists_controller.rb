@@ -51,7 +51,7 @@ class CafeListsController < ApplicationController
   # POST /cafe_lists.json
   def create
     @cafe_list = CafeList.new(cafe_list_params)
-
+    
     respond_to do |format|
       if @cafe_list.save
         format.html { redirect_to @cafe_list, notice: 'Cafe was successfully created.' }
@@ -95,6 +95,6 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location, :location_url)
+      params.require(:cafe_list).permit(:title, :bean, :location, :picture_cafe)
     end
 end
