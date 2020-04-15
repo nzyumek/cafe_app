@@ -1,5 +1,5 @@
 class CafeListsController < ApplicationController
-  before_action :set_cafe_list, only: [:show, :edit, :update, :destroy, :sort]
+  before_action :set_cafe_list, only: [:show, :edit, :update, :destroy, :sort, :upload_file]
 
   # GET /cafe_lists
   # GET /cafe_lists.json
@@ -50,31 +50,35 @@ class CafeListsController < ApplicationController
   # POST /cafe_lists
   # POST /cafe_lists.json
   def create
-    @cafe_list = CafeList.new(cafe_list_params)
-    
-    respond_to do |format|
-      if @cafe_list.save
-        format.html { redirect_to @cafe_list, notice: 'Cafe was successfully created.' }
-        format.json { render :show, status: :created, location: @cafe_list}
-      else
-        format.html { render :new }
-        format.json { render json: @cafe_list.errors, status: :unprocessable_entity }
+    #cafe_list_params[:image_url].each do |a|
+      @cafe_list = CafeList.new(cafe_list_params) #clone.merge({image: a}))
+      # @cafe_list.cafe_list_images.create(image_params)
+      respond_to do |format|
+        if @cafe_list.save
+          format.html { redirect_to @cafe_list, notice: 'Cafe was successfully created.' }
+          format.json { render :show, status: :created, location: @cafe_list}
+        else
+          format.html { render :new }
+          format.json { render json: @cafe_list.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    #end  
   end
 
   # PATCH/PUT /cafe_lists/1
   # PATCH/PUT /cafe_lists/1.json
   def update
-    respond_to do |format|
-      if @cafe_list.update(cafe_list_params)
-        format.html { redirect_to @cafe_list, notice: 'Cafe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cafe_list }
-      else
-        format.html { render :edit }
-        format.json { render json: @cafe_list.errors, status: :unprocessable_entity }
+    #cafe_list_params[:image_url].each do |a|
+      respond_to do |format|
+        if @cafe_list.update(cafe_list_params)#.clone.merge({image_url: a}))
+          format.html { redirect_to @cafe_list, notice: 'Cafe was successfully updated.' and return}
+          format.json { render :show, status: :ok, location: @cafe_list and return}
+        else
+          format.html { render :edit }
+          format.json { render json: @cafe_list.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    #end
   end
 
   # DELETE /cafe_lists/1
@@ -86,6 +90,7 @@ class CafeListsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -95,6 +100,10 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location, :image, :url, :info)
+      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, cafe_list_images: [] )
     end
+    
+    # def image_params
+    #   params.require(:cafe_list_image).permit(:image_url[])
+    # end
 end

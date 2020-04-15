@@ -68,3 +68,8 @@ gem 'devise', '~> 4.2'
 
 gem 'carrierwave'
 gem 'rmagick'
+gem 'fog-aws'
+
+gem 'aws-sdk-s3', require: false
+
+gem 'image_processing', '~> 1.2'

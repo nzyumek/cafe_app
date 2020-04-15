@@ -29,9 +29,12 @@
     <%= form.label :url %>
     <%= form.text_area :url, class:"form-control" %>
   </div>
+  
   <div class="field form-group">
-    <%= form.label "画像をアップロード" %><br><%= form.file_field :image %>
+    <%= form.label "画像をアップロード" %><br>
+    <%= form.file_field :cafe_list_images, multiple: true %>
   </div>
+
   <div class="actions">
     <%= form.submit class: "btn btn-primary" %>
   </div>

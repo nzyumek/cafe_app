@@ -10,13 +10,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block h-50 mx-auto" src="https://thehivejinnan.com/wp-content/uploads/cache/2019/03/Carousel-1/2020095395.jpg" alt="First slide">
+      <img class="d-block mx-auto" src="https://thehivejinnan.com/wp-content/uploads/cache/2019/03/Carousel-1/2020095395.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block h-50 mx-auto" src="https://www.visitsingapore.com/ja_jp/see-do-singapore/places-to-see/tiong-bahru/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg" alt="Second slide">
+      <img class="d-block mx-auto" src="https://www.visitsingapore.com/ja_jp/see-do-singapore/places-to-see/tiong-bahru/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block h-50 mx-auto" src="https://www.visitsingapore.com/ja_jp/see-do-singapore/nature-wildlife/parks-gardens/east-coast-park/_jcr_content/par-carousel/carousel_detailpage/carousel/item_2.thumbnail.carousel-img.740.416.jpg" alt="Third slide">
+      <img class="d-block mx-auto" src="https://www.visitsingapore.com/ja_jp/see-do-singapore/nature-wildlife/parks-gardens/east-coast-park/_jcr_content/par-carousel/carousel_detailpage/carousel/item_2.thumbnail.carousel-img.740.416.jpg" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -30,43 +30,28 @@
 </div>
 
 <!--おすすめカフェ　カード-->
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-sm mb-3">
-      <div class="card" style="width: 18rem;">
-        <%= image_tag 'https://storage.googleapis.com/production-os-assets/assets/5ebee66d-9e30-4a70-9e49-121948459b76', class: 'card-img-top', alt: "" %>
-        <div class="card-body">
-          <h5 class="card-title">KITASANDO COFFEE</h5>
-          <p class="card-text">KITASANDO COFFEE は北参道駅から徒歩3分のキャッシュレスカフェです。</p>
-アプリを使ってスマートに注文、白と木を基調にした開放的な店内でゆったりと過ごせます。</p>
-スタンダードなコーヒーから、ユニークなフレーバーのオリジナルコーヒー、</p>
-色鮮やかな具材をたっぷりつかったサラダとの組み合わせもお楽しみください。</p>
-          <a href="cafe_lists/13" class="text-dark">More</a>
+<!--ループ書く-->
+
+
+
+  <div class="container mt-5">
+    <div class="row">
+      <% @cafe_lists.each do |cafe_list| %>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <a href="cafe_lists/<%= cafe_list.id %>">
+              <%= image_tag 'https://tblg.k-img.com/restaurant/images/Rvw/49639/640x640_rect_49639528.jpg', class: 'card-img-top', alt: "" %>
+            </a>
+            <div class="card-body">
+              <a href="cafe_lists/<%= cafe_list.id %>">
+                <h5 class="card-title text-dark"><%= cafe_list.title %></h5>
+              </a>
+              <p class="card-text"><%= cafe_list.info %></p>
+              <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">More</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-sm mb-3">
-      <div class="card" style="width: 18rem;">
-        <%= image_tag 'https://tblg.k-img.com/restaurant/images/Rvw/49639/640x640_rect_49639528.jpg', class: 'card-img-top', alt: "" %>
-        <div class="card-body">
-          <h5 class="card-title">Little Nap Coffee Stand</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="cafe_lists/11" class="text-dark">More</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm mb-3">
-      <div class="card" style="width: 18rem;">
-        <%= image_tag 'https://cafetrip.info/wp-content/uploads/2018/05/P1060563.jpg', class: 'card-img-top', alt: "" %>
-        <div class="card-body">
-          <h5 class="card-title">FUK Coffee</h5>
-          <p class="card-text">福岡のCOFFEEスタンド。</p>
-FUKは、福岡空港の空港コード（３レターコード）✈</p>
-空港・飛行機・旅行をテーマとしています。</p>
-スペシャルティコーヒーをお楽しみください☕ </p>
-          <a href="cafe_lists/21" class="text-dark">More</a>
-        </div>
-      </div>
+      <% end %>     
     </div>
   </div>
-</div>
+    
