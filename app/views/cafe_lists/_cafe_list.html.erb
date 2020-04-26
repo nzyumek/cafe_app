@@ -1,12 +1,26 @@
       <tr>
-        <td><%= cafe_list.id %></td>
-        <td><%= cafe_list.title %></td>
-        <td><%= cafe_list.title %></td>
+        <td>
+          <a href="cafe_lists/<%= cafe_list.id %>">
+            <% if !cafe_list.cafe_list_images.blank? %>
+              <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [350, 350]) %>
+            <% else %>
+              <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '350', :height => 'auto' %>
+            <% end %>
+          </a>
+        </td>
+        <td>
+          <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">
+            <%= cafe_list.title %>
+          </a>
+        </td>
         <td><%= cafe_list.bean %></td>
         <td><%= cafe_list.location %></td>
         <td>
           <%= link_to 'Show', cafe_list, class: "btn btn-outline-primary" %>
           <%= link_to 'Edit', edit_cafe_list_path(cafe_list), class: "btn btn-outline-primary" %>
           <%= link_to 'Destroy', cafe_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+        </td>
+        <td>
+          <%= l cafe_list.created_at %>
         </td>
       </tr>

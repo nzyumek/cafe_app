@@ -13,6 +13,9 @@ module Cafe
     
     config.hosts << "094f566fa34c47d4986402940b686339.vfs.cloud9.us-west-2.amazonaws.com"
     
+    config.time_zone = 'Asia/Tokyo'
+    config.i18n.default_locale = :ja
+    
     config.to_prepare do
        Devise::SessionsController.layout "devise"
        Devise::RegistrationsController.layout "devise"

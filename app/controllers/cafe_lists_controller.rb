@@ -36,6 +36,8 @@ class CafeListsController < ApplicationController
   # GET /cafe_lists/1
   # GET /cafe_lists/1.json
   def show
+    @review = Review.new
+    @reviews = @cafe_list.reviews
   end
 
   # GET /cafe_lists/new
@@ -68,6 +70,7 @@ class CafeListsController < ApplicationController
   # PATCH/PUT /cafe_lists/1
   # PATCH/PUT /cafe_lists/1.json
   def update
+      @cafe_list.cafe_list_images.detach
     #cafe_list_params[:image_url].each do |a|
       respond_to do |format|
         if @cafe_list.update(cafe_list_params)#.clone.merge({image_url: a}))
@@ -78,6 +81,12 @@ class CafeListsController < ApplicationController
           format.json { render json: @cafe_list.errors, status: :unprocessable_entity }
         end
       end
+      #@cafe_list.cafe_list_images.detach #一旦、すべてのimageの紐つけを解除
+        #if @cafe_list.update(item_params)
+          #redirect_to @cafe_list, notice: 'Item was successfully updated.'
+        #else
+          #render :edit
+        #end
     #end
   end
 
@@ -90,7 +99,6 @@ class CafeListsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -100,8 +108,9 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, cafe_list_images: [] )
+      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, :access, :parking, :openingtime, :dayoff, :tel, :envir, :wifi, :cashless, :reservation, cafe_list_images: [] )
     end
+
     
     # def image_params
     #   params.require(:cafe_list_image).permit(:image_url[])

@@ -1,21 +1,113 @@
 <h3><%= @cafe_list.title %></h3>
 <div class="row">
-    <div class="col-sm">
-      <% @cafe_list.cafe_list_images.each do |image| %>
-        <%= image_tag image.variant(resize_to_limit: [500, 500]) %>
+    <div class="col-md-6 offset-md-3">
+      <% if @cafe_list.cafe_list_images[0].blank? %>
+        <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
+      <% else %>
+        <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]) %>
       <% end %>
       </br>
-      <%= @cafe_list.title %>
     </div>
-    <div class="col-sm">
-      Cafe Name: <%= @cafe_list.title %><br />
-      Bean: <%= @cafe_list.bean %><br />
-      Location: <%= @cafe_list.location %><br />
-      Url: <a href="<%= @cafe_list.url %> class="text-dark><%= @cafe_list.url %></a><br />
-      Info: <%= @cafe_list.info %><br />
-    </div>
-    <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 </div>
 
-<%= link_to 'Edit', edit_cafe_list_path(@cafe_list) %> |
+<ul class="list-group">
+      <div class="col-md-6 offset-md-3">
+        About <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        住所: <%= safe_join(@cafe_list.location.split("\n"),tag(:br)) %>
+        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></li>
+        <li class="list-group-item">
+        アクセス: <%= safe_join(@cafe_list.access.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        営業時間: <%= safe_join(@cafe_list.openingtime.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        定休日: <%= safe_join(@cafe_list.dayoff.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        豆の種類: <%= safe_join(@cafe_list.bean.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        店の特色: <%= safe_join(@cafe_list.info.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        連絡先: <%= safe_join(@cafe_list.tel.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        予約: <%= safe_join(@cafe_list.reservation.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        環境: <%= safe_join(@cafe_list.envir.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        Wifi: <%= safe_join(@cafe_list.wifi.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        駐車場: <%= safe_join(@cafe_list.parking.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        キャッシュレス決済: <%= safe_join(@cafe_list.cashless.split("\n"),tag(:br)) %></li>
+        <li class="list-group-item">
+        Url: <a href="<%= @cafe_list.url %> class="text-dark><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
+        <li class="list-group-item">
+        Last Update at </li>
+      </div>
+</ul>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    最新の口コミ
+    <%= form_for @review do |f| %>
+      <%= f.text_field :title %>
+      <%= f.text_field :content, class: "text-field" %>
+      <%= f.hidden_field :cafe_list_id, :value => @cafe_list.id %>
+      <%= f.submit '投稿', class: "submit-btn" %>
+    <% end %>
+    <%= link_to '口コミ', reviews_path %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    Gallery:
+  </div>
+</div>
+
+<!--画像カルーセル-->
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  
+      
+  <div class="carousel-inner col-md-6 offset-md-3">
+      <div class="carousel-item active">
+        <% if @cafe_list.cafe_list_images[0].blank? %>
+          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
+        <% else %>
+          <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]) %>
+        <% end %>
+      </div>
+      <div class="carousel-item col-md-6 offset-md-3">
+        <% if @cafe_list.cafe_list_images[1].blank? %>
+          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
+        <% else %>
+          <%= image_tag @cafe_list.cafe_list_images[1].variant(resize_to_limit: [500, 500]) %>
+        <% end %>
+      </div>
+      <div class="carousel-item col-md-6 offset-md-3">
+        <% if @cafe_list.cafe_list_images[2].blank? %>
+          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
+        <% else %>
+          <%= image_tag @cafe_list.cafe_list_images[2].variant(resize_to_limit: [500, 500]) %>
+        <% end %>
+      </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<%= link_to 'Edit', edit_cafe_list_path(@cafe_list) %> | 
 <%= link_to 'Back', cafe_lists_path %>

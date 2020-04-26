@@ -1,0 +1,1 @@
+json.cafe_list_images_id @cafe_list_images_blob.id if @cafe_list_images_blob

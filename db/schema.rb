@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_032117) do
+ActiveRecord::Schema.define(version: 2020_04_21_025542) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2020_04_15_032117) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "url"
     t.string "info"
+    t.string "access"
+    t.string "parking"
+    t.string "openingtime"
+    t.string "dayoff"
+    t.string "tel"
+    t.string "envir"
+    t.string "wifi"
+    t.string "cashless"
+    t.string "reservation"
   end
 
   create_table "infos", force: :cascade do |t|
@@ -57,6 +66,16 @@ ActiveRecord::Schema.define(version: 2020_04_15_032117) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cafe_list_id"], name: "index_infos_on_cafe_list_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "cafe_list_id", null: false
+    t.float "rate"
+    t.text "content"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cafe_list_id"], name: "index_reviews_on_cafe_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_04_15_032117) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -75,4 +95,5 @@ ActiveRecord::Schema.define(version: 2020_04_15_032117) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cafe_list_images", "cafe_lists"
   add_foreign_key "infos", "cafe_lists"
+  add_foreign_key "reviews", "cafe_lists"
 end

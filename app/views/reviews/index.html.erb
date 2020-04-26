@@ -1,0 +1,43 @@
+<% if @reviews.present? %>
+  <% @reviews.each do |review| %>
+    <div class="row reviews">
+
+      <div class="col-md-6 mb-3">
+        <div class=" reviews-content">
+
+
+          <h4 class="mb-3">評価：<%= review.rate %>点 | <%= review.title %></h4>
+
+          <!--星評価-->
+         <div id="star-rate-<%= review.id %>"></div>
+          <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+          </script>  
+        <!--/星評価-->
+
+          <p><%= review.content %></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <%= link_to review.cafe_list do %>
+          <div class="reviews-cafe_list">
+            <p><%=  review.cafe_list.title %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-12 edit-button">
+          <%= link_to '口コミを編集', edit_review_path(review), class:'btn btn-default' %>
+      </div>      
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to 'New', new_review_path %> 

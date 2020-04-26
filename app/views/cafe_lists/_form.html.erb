@@ -10,24 +10,60 @@
     </div>
   <% end %>
   <div class="field form-group">
-    <%= form.label :title %>
+    <%= form.label "店名" %>
     <%= form.text_field :title, class:"form-control" %>
   </div>
   <div class="field form-group">
-    <%= form.label :bean %>
-    <%= form.text_area :bean, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label :location %>
+    <%= form.label "住所" %>
     <%= form.text_area :location, class:"form-control" %>
   </div>
   <div class="field form-group">
-    <%= form.label :info %>
-    <%= form.text_area :info, class:"form-control" %>
+    <%= form.label "豆の種類" %>
+    <%= form.text_area :bean, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "アクセス" %>
+    <%= form.text_area :access, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "営業時間" %>
+    <%= form.text_area :openingtime, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "定休日" %>
+    <%= form.text_area :dayoff, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "駐車場" %>
+    <%= form.text_area :parking, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "連絡先" %>
+    <%= form.text_area :tel, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "予約" %>
+    <%= form.text_area :reservation, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "環境" %>
+    <%= form.text_area :envir, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "Wifi" %>
+    <%= form.text_area :wifi, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "キャッシュレス決済" %>
+    <%= form.text_area :cashless, class:"form-control" %>
   </div>
   <div class="field form-group">
     <%= form.label :url %>
     <%= form.text_area :url, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label :info %>
+    <%= form.text_area :info, class:"form-control" %>
   </div>
   
   <div class="field form-group">
