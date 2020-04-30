@@ -1,12 +1,13 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy, :sort]    
+  #before_action :set_review, only: [:show, :edit, :update, :destroy, :sort]    
     
     def index
-        @cafe_list_id = params[:id]
+        @cafe_list_id = params[:cafe_list_id]
         
         # TODO @cafe_list_idを利用してReviewsテーブルから該当のReviewを持ってくる
         # TODO @reviewsという配列に格納する
         @reviews = Review.where(cafe_list_id: @cafe_list_id)
+        #@user = current_user #???
     end
     
     def show
@@ -15,7 +16,7 @@ class ReviewsController < ApplicationController
     end
     
     def new
-        @cafe_list_id = params[:id]
+        @cafe_list_id = params[:cafe_list_id]
         #@cafe_list_id = CafeList.find(params[:cafe_list_id])
         @review = Review.new
         #redirect_to reviews_path
@@ -23,13 +24,15 @@ class ReviewsController < ApplicationController
     end
     
     def edit
+      @review = Review.find(params[:id])
+      @cafe_list_id = params[:cafe_list_id]
     end
     
     def create
         @review = Review.new(review_params)
         #respond_to do |format|
             if @review.save
-                redirect_to reviews_path
+                redirect_to cafe_list_review_path(id: @review.id)
               #format.html { redirect_to reviews_path, notice: 'Cafe was successfully created.' }
               #format.json { render :show, status: :created, location: @review}
             else
@@ -41,9 +44,11 @@ class ReviewsController < ApplicationController
     end
     
     def update
+      @review = Review.find(params[:id])
+      @cafe_list_id = params[:cafe_list_id]
     #cafe_list_params[:image_url].each do |a|
         if @review.update(review_params)
-            redirect_to reviews_path
+            redirect_to cafe_list_reviews_path
         else
             render :edit
         end
@@ -65,14 +70,24 @@ class ReviewsController < ApplicationController
     #end
     end
     
+    def destroy
+      @review = Review.find(params[:id])
+      @cafe_list_id = params[:cafe_list_id]
+      @review.destroy
+      respond_to do |format|
+        format.html { redirect_to cafe_list_reviews_path, notice: 'Cafe list was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+    
     private
 
-        def set_review
-          @review = Review.find(params[:id])
-        end
+        #def set_review
+          #@review = Review.find(params[:id])
+        #end
 
         
         def review_params
-            params.require(:review).permit(:title, :content, :rate, :cafe_list_id)
+            params.require(:review).permit(:title, :content, :rate, :cafe_list_id, review_images: [])
         end
 end

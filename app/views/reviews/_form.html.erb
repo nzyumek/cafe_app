@@ -1,5 +1,5 @@
 <!-- 口コミ入力フォーム -->
-<%= form_with(model: @review, url: reviews_path, local: true) do |f| %>
+
 
 
   <!--商品コードの送信-->
@@ -26,7 +26,7 @@
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
     starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'post[rate]',
+    scoreName: 'review[rate]',
     half: true,
   });
   </script>  
@@ -39,6 +39,10 @@
         placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。
 まずは投稿してみましょう！投稿してから編集もできますよ！' %>
     </div>
+  </div>
+  
+  <div class="field">
+    <%= f.file_field :review_images, multiple: true %>
   </div>
 
   <!-- 確認ボタン -->

@@ -43,20 +43,43 @@
         <li class="list-group-item">
         Url: <a href="<%= @cafe_list.url %> class="text-dark><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
         <li class="list-group-item">
-        Last Update at </li>
+        Last Update at <%= l @cafe_list.updated_at %></li>
       </div>
 </ul>
 
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    最新の口コミ
-    <%= form_for @review do |f| %>
-      <%= f.text_field :title %>
-      <%= f.text_field :content, class: "text-field" %>
-      <%= f.hidden_field :cafe_list_id, :value => @cafe_list.id %>
-      <%= f.submit '投稿', class: "submit-btn" %>
+    最新の口コミ<br />
+    <% @review.each do |review| %>
+      <div class="row reviews">
+
+        <div class="col-md-6 mb-3">
+          <div class=" reviews-content">
+  
+  
+            <h4 class="mb-3">評価：<%= review.rate %>点 | <%= review.title %></h4>
+  
+            <!--星評価-->
+           <div id="star-rate-<%= review.id %>"></div>
+            <script>
+            $('#star-rate-<%= review.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= review.rate %>,
+            });
+            </script>  
+          <!--/星評価-->
+  
+            <p><%= review.content %></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-    <%= link_to '口コミ', reviews_path %>
+    <%= link_to 'More', cafe_list_reviews_path(@cafe_list) %>
   </div>
 </div>
 

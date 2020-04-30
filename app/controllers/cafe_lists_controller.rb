@@ -36,7 +36,7 @@ class CafeListsController < ApplicationController
   # GET /cafe_lists/1
   # GET /cafe_lists/1.json
   def show
-    @review = Review.new
+    @review = Review.last(1)
     @reviews = @cafe_list.reviews
   end
 

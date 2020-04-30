@@ -1,5 +1,8 @@
 <h1>New Cafe</h1>
 
-<%= render 'form', post: @reviews %>
+<%= form_with(model: @review, url: cafe_list_reviews_path, local: true) do |f| %>
+    <%= render 'form', :locals => {:f => f}, post: @reviews %>
+<% end %>
 
-<%= link_to 'Back', reviews_path %>
+
+<%= link_to 'Back', cafe_list_reviews_path %>
