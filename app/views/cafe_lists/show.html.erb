@@ -121,5 +121,10 @@
   </a>
 </div>
 
-<%= link_to 'Edit', edit_cafe_list_path(@cafe_list) %> | 
-<%= link_to 'Back', cafe_lists_path %>
+<% if user_signed_in? %>
+  <%= link_to '編集', edit_cafe_list_path(@cafe_list) %> 
+<% else %>
+  <%= link_to '編集', new_user_session_path %>
+<% end %>
+</br>
+<%= link_to '戻る', cafe_lists_path %>

@@ -20,7 +20,9 @@
         <th scope="col">Title</th>
         <th scope="col">Bean</th>
         <th scope="col">Location</th>
+        <% if user_signed_in? %>
         <th scope="col">Action</th>
+        <% end %>
         <th scope="col">Latest Update</th>
       </tr>
     </thead>
@@ -29,4 +31,8 @@
     </tbody>
   </table>
 <br>
-<%= link_to 'New Cafe?', new_cafe_list_path %>
+<% if user_signed_in? %>
+  <%= link_to 'カフェを登録', new_cafe_list_path %>
+<% else %>
+  <%= link_to 'カフェを登録', new_user_session_path %>
+<% end %>
