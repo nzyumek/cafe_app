@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_060703) do
+ActiveRecord::Schema.define(version: 2020_05_06_072818) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,23 @@ ActiveRecord::Schema.define(version: 2020_05_06_060703) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "beantags", force: :cascade do |t|
+    t.string "name"
+    t.integer "cafe_list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cafe_list_id"], name: "index_beantags_on_cafe_list_id"
+  end
+
+  create_table "cafe_list_beantags", force: :cascade do |t|
+    t.integer "cafe_list_id", null: false
+    t.integer "beantag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["beantag_id"], name: "index_cafe_list_beantags_on_beantag_id"
+    t.index ["cafe_list_id"], name: "index_cafe_list_beantags_on_cafe_list_id"
   end
 
   create_table "cafe_list_images", force: :cascade do |t|
@@ -95,6 +112,9 @@ ActiveRecord::Schema.define(version: 2020_05_06_060703) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "beantags", "cafe_lists"
+  add_foreign_key "cafe_list_beantags", "beantags"
+  add_foreign_key "cafe_list_beantags", "cafe_lists"
   add_foreign_key "cafe_list_images", "cafe_lists"
   add_foreign_key "infos", "cafe_lists"
   add_foreign_key "reviews", "cafe_lists"

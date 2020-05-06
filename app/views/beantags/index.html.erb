@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Beantags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cafe list</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @beantags.each do |beantag| %>
+      <tr>
+        <td><%= beantag.name %></td>
+        <td><%= beantag.cafe_list_id %></td>
+        <td><%= link_to 'Show', beantag %></td>
+        <td><%= link_to 'Edit', edit_beantag_path(beantag) %></td>
+        <td><%= link_to 'Destroy', beantag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Beantag', new_beantag_path %>

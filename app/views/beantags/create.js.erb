@@ -1,0 +1,21 @@
+// 値をクリアしてfocusする
+$('.field input#beantag_name').val("")
+$('.field input#beantag_name').focus();
+
+// Rails @status => true 画面の書き換え : false モーダルを再度表示
+// <% if @status %>
+$("#modalArea")
+  .find("#beantagIndex")
+  .html('<%= j(render partial: "beantags/beantag", as: :beantag) %>')
+
+// <% else %>
+
+// モーダルを閉じる処理
+<%= render 'remove_modal' %>
+
+// モーダルの書き換え
+$("#modalArea").html("<%= j(render 'beantags/form', beantag: @beantag) %>")
+
+// モーダル表示
+<%= render 'show_modal' %>
+// <% end %>

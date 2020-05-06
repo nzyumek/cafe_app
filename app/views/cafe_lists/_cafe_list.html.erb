@@ -13,7 +13,11 @@
             <%= cafe_list.title %>
           </a>
         </td>
-        <td><%= cafe_list.bean %></td>
+        <td><%= cafe_list.bean %>
+          <div>
+            <%= render partial: "cafe_lists/beantag", collection: cafe_list.beantags, as: :beantag %>
+          </div>
+        </td>
         <td><%= cafe_list.location %></td>
         <% if user_signed_in? %>　<!--adminに変わる-->
         <td>

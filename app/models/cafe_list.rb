@@ -3,6 +3,9 @@ class CafeList < ApplicationRecord
     has_many_attached :cafe_list_images
     has_many :reviews
     belongs_to :user
+    has_many :cafe_list_beantags
+    has_many :beantags, through: :cafe_list_beantags
+    accepts_nested_attributes_for :cafe_list_beantags
     #validate :validate_cafe_list_images
 
       ##def validate_cafe_list_images

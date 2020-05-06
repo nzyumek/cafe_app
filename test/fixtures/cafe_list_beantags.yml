@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cafe_list: one
+  beantag: one
+
+two:
+  cafe_list: two
+  beantag: two

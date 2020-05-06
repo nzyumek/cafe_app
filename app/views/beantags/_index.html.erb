@@ -1,0 +1,3 @@
+<div id="beantagIndex">
+  <%= render partial: "beantags/beantag", collection: @cafe_list.beantags.select(&:persisted?), as: :beantag %>
+</div>
