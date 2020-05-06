@@ -9,4 +9,7 @@ class User < ApplicationRecord
   attr_accessor :current_password
   
   has_one_attached :profileimage
+  
+  has_many :cafe_lists
+  has_many :reviews
 end

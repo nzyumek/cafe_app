@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   #before_action :set_review, only: [:show, :edit, :update, :destroy, :sort]    
+  before_action :set_current_user  
     
     def index
         @cafe_list_id = params[:cafe_list_id]
@@ -30,9 +31,10 @@ class ReviewsController < ApplicationController
     
     def create
         @review = Review.new(review_params)
+        @review.user_id = current_user.id
         #respond_to do |format|
             if @review.save
-                redirect_to cafe_list_review_path(id: @review.id)
+                redirect_to cafe_list_reviews_path
               #format.html { redirect_to reviews_path, notice: 'Cafe was successfully created.' }
               #format.json { render :show, status: :created, location: @review}
             else
@@ -44,6 +46,9 @@ class ReviewsController < ApplicationController
     end
     
     def update
+      if @review.user != current_user
+        redirect_to cafe_list_reviews_path
+      end      
       @review = Review.find(params[:id])
       @cafe_list_id = params[:cafe_list_id]
     #cafe_list_params[:image_url].each do |a|
@@ -81,7 +86,11 @@ class ReviewsController < ApplicationController
     end
     
     private
-
+    
+        def set_current_user
+          @current_user = User.find_by(id: session[:user_id])
+        end
+        
         #def set_review
           #@review = Review.find(params[:id])
         #end

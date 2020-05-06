@@ -1,3 +1,6 @@
+<h1>aaa</h1>
+<h2>sss</h2>
+<h3>bbb</h3>
 <% if @reviews.present? %>
   <% @reviews.each do |review| %>
     <div class="row reviews">
@@ -19,18 +22,13 @@
         </div>
       </div>
       <div class="col-md-4">
-        <%= link_to review.cafe_list do %>
-          <div class="reviews-cafe_list">
-            <p><%=  review.cafe_list.title %></p>
-          </div>
-        <% end %>
         <% review.review_images.each do |image| %>
           <%= image_tag image.variant(resize_to_limit: [250, 250]) %>
         <% end %>
         </br>
-        Lastest Update: <%#= l review.updated_at %>
+        Lastest Update: <%= l review.updated_at %> by <%= review.user.name %>
       </div>
-      <% if user_signed_in? %>
+      <% if review.user == current_user %>
         <div class="col-md-12 edit-button">
             <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
             <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
@@ -43,7 +41,7 @@
 <% if user_signed_in? %>
   <%= link_to '口コミを投稿', new_cafe_list_review_path(@cafe_list_id) %> 
 <% else %>
-  <%= link_to '口コミを投稿', new_user_session_path %>
+  <%= link_to 'ログインし、口コミを投稿', new_user_session_path %>
 <% end %>
 </br>
 <%= link_to '戻る', cafe_list_path(@cafe_list_id) %>

@@ -1,5 +1,6 @@
 <p>ニックネーム: <%= @user.name %></p>
 <p>email: <%= @user.email %></p>
+<p>id: <%= @user.id %></p>
 <p><% if @user.profileimage.blank? %>
         <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '120', :height => 'auto' %>
     <% else %>

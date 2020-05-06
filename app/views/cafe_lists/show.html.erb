@@ -43,7 +43,7 @@
         <li class="list-group-item">
         Url: <a href="<%= @cafe_list.url %> class="text-dark><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
         <li class="list-group-item">
-        Last Update at <%= l @cafe_list.updated_at %></li>
+        Last Update at <%= l @cafe_list.updated_at %> <!--by <#%= @cafe_list.user.name %>--></li>
       </div>
 </ul>
 
@@ -121,10 +121,9 @@
   </a>
 </div>
 
-<% if user_signed_in? %>
-  <%= link_to '編集', edit_cafe_list_path(@cafe_list) %> 
-<% else %>
-  <%= link_to '編集', new_user_session_path %>
+<% if @cafe_list.user == current_user %>
+  <td><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></td><br/>
+  <td><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <% end %>
 </br>
 <%= link_to '戻る', cafe_lists_path %>

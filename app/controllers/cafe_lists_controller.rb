@@ -1,5 +1,6 @@
 class CafeListsController < ApplicationController
   before_action :set_cafe_list, only: [:show, :edit, :update, :destroy, :sort, :upload_file]
+  before_action :set_current_user
 
   # GET /cafe_lists
   # GET /cafe_lists.json
@@ -54,6 +55,7 @@ class CafeListsController < ApplicationController
   def create
     #cafe_list_params[:image_url].each do |a|
       @cafe_list = CafeList.new(cafe_list_params) #clone.merge({image: a}))
+      @cafe_list.user_id = current_user.id
       # @cafe_list.cafe_list_images.create(image_params)
       respond_to do |format|
         if @cafe_list.save
@@ -70,6 +72,9 @@ class CafeListsController < ApplicationController
   # PATCH/PUT /cafe_lists/1
   # PATCH/PUT /cafe_lists/1.json
   def update
+    if @cafe_list.user != current_user
+      redirect_to @cafe_list
+    end
       @cafe_list.cafe_list_images.detach
     #cafe_list_params[:image_url].each do |a|
       respond_to do |format|
@@ -102,6 +107,10 @@ class CafeListsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_current_user
+      @current_user = User.find_by(id: session[:user_id])
+    end
+        
     def set_cafe_list
       @cafe_list = CafeList.find(params[:id])
     end

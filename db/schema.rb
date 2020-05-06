@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_025542) do
+ActiveRecord::Schema.define(version: 2020_05_06_060703) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_025542) do
     t.string "wifi"
     t.string "cashless"
     t.string "reservation"
+    t.integer "user_id"
   end
 
   create_table "infos", force: :cascade do |t|
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_025542) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["cafe_list_id"], name: "index_reviews_on_cafe_list_id"
   end
 

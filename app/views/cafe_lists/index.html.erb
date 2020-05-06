@@ -20,8 +20,8 @@
         <th scope="col">Title</th>
         <th scope="col">Bean</th>
         <th scope="col">Location</th>
-        <% if user_signed_in? %>
-        <th scope="col">Action</th>
+        <% if user_signed_in? %> <!-- admin-->
+        <th scope="col">Action(admin)</th>
         <% end %>
         <th scope="col">Latest Update</th>
       </tr>
@@ -34,5 +34,5 @@
 <% if user_signed_in? %>
   <%= link_to 'カフェを登録', new_cafe_list_path %>
 <% else %>
-  <%= link_to 'カフェを登録', new_user_session_path %>
+  <%= link_to 'ログインし、カフェを登録', new_user_session_path %>
 <% end %>

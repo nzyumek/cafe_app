@@ -2,6 +2,7 @@ class CafeList < ApplicationRecord
     has_many :infos
     has_many_attached :cafe_list_images
     has_many :reviews
+    belongs_to :user
     #validate :validate_cafe_list_images
 
       ##def validate_cafe_list_images
