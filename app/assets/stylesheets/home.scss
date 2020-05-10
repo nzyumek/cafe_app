@@ -4,14 +4,14 @@
 
 
 @media (min-width: 320px) {
-  .carousel-inner img {
+  .carousel-item img {
     height:30vh;
   }
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-  .carousel-inner img {
+  .carousel-item img {
     height:45vh;
   }
 }

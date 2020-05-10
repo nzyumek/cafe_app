@@ -19,7 +19,7 @@
           </div>
         </td>
         <td><%= cafe_list.location %></td>
-        <% if user_signed_in? %>　<!--adminに変わる-->
+        <% if admin_signed_in? %>　<!--adminに変わる-->
         <td>
           <%= link_to 'Show', cafe_list, class: "btn btn-outline-primary" %>
           <%= link_to 'Edit', edit_cafe_list_path(cafe_list), class: "btn btn-outline-primary" %>

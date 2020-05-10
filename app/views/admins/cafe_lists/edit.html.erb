@@ -1,0 +1,7 @@
+<h1>Admins::CafeLists#edit</h1>
+<p>Find me in app/views/admins/cafe_lists/edit.html.erb</p>
+<%= form_with(model: @user, url: admins_user_path(@user)) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.email_field :email %>
+  <%= f.submit %>
+<% end %>

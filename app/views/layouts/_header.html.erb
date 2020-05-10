@@ -39,7 +39,26 @@
                     </li>
                   </div>
                 </div>
-
+                
+            <% elsif admin_signed_in? %>
+                <div class="dropdown show mr-2">
+                    <li class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    管理員
+                    </li>
+                
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li class="dropdown-item">
+                            <%= link_to "ユーザー一覧", admins_users_path, class:"text-dark" %>
+                        </li>
+                        <li class="dropdown-item">
+                            <%= link_to "投稿一覧", admins_cafe_lists_path, class:"text-dark" %>
+                        </li>
+                    <div class="dropdown-divider"></div>
+                        <li class="dropdown-item">
+                        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-dark" %>
+                        </li>
+                  </div>
+                </div>
             <% else %>
                 <li class="menu-item mr-2">
                     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary" %>

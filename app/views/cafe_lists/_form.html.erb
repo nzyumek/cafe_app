@@ -14,7 +14,12 @@
     <%= form.text_field :title, class:"form-control" %>
   </div>
   <div class="field form-group">
-    <%= form.label "住所" %>
+    <%= form.label "所在地情報" %></br>
+    <%= form.label "都道府県" %>
+    <%= form.text_area :prefecture, class:"form-control" %>
+    <%= form.label "市区町村" %>
+    <%= form.text_area :ward, class:"form-control" %>
+    <%= form.label "番地・ビル名・階数" %>
     <%= form.text_area :location, class:"form-control" %>
   </div>
   <div class="field form-group">

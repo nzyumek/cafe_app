@@ -1,0 +1,33 @@
+<h1>Admins::Users#show</h1>
+<p>Find me in app/views/admins/users/show.html.erb</p>
+<h2>ユーザー詳細画面</h2>
+<p><% if @user.profileimage.blank? %>
+        <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '240', :height => 'auto' %>
+    <% else %>
+        <%= image_tag url_for(@user.profileimage), :width => '240', :height => 'auto' %>
+    <% end %>
+    </p>
+<p>id: <%= @user.id %></p>
+<p>name: <%= @user.name %></p> 
+<p>email: <%= @user.email %></p>
+
+
+
+<%= link_to "ユーザーを編集", edit_admins_user_path(@user) %>
+
+<br/>
+<br/>
+<p>投稿一覧</p>
+<% @user.cafe_lists.each do |cafe_list| %>
+  <p>店名: <%= cafe_list.title %> 更新日時: <%= cafe_list.updated_at %><%= link_to "詳細", cafe_list_path(cafe_list.id) %></p>
+<% end %>
+
+<br/>
+<br/>
+<p>レビュー一覧</p>
+<% @user.reviews.each do |review| %>
+    <p>店名: <%#= review.cafe_list.title %> レビュー:<%= review.title %></p>
+<% end %>
+
+<br/>
+<%= link_to "戻る", admins_users_path %>

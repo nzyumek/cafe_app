@@ -9,31 +9,31 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-      <div class="carousel-item col-md-6 offset-md-3 active">
+      <div class="carousel-item active">
         <a href="cafe_lists/<%= @cafe_lists_carousel[0].id %>">
-                  <% if @cafe_lists_carousel[0].cafe_list_images.blank? %>
-                    <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
-                  <% else %>
-                    <%= image_tag @cafe_lists_carousel[0].cafe_list_images[0].variant(resize_to_limit: [1080, 1080]) %>
-                  <% end %>
+          <% if @cafe_lists_carousel[0].cafe_list_images.blank? %>
+            <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+          <% else %>
+            <%= image_tag @cafe_lists_carousel[0].cafe_list_images[0].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+          <% end %>
         </a>
       </div>
-      <div class="carousel-item col-md-6 offset-md-3">
+      <div class="carousel-item">
         <a href="cafe_lists/<%= @cafe_lists_carousel[1].id %>">
-            <% if @cafe_lists_carousel[1].cafe_list_images.blank? %>
-                        <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
-                      <% else %>
-                        <%= image_tag @cafe_lists_carousel[1].cafe_list_images[0].variant(resize_to_limit: [500, 500]) %>
-                      <% end %>
+          <% if @cafe_lists_carousel[1].cafe_list_images.blank? %>
+            <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+          <% else %>
+            <%= image_tag @cafe_lists_carousel[1].cafe_list_images[0].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+          <% end %>
         </a>
       </div>
-      <div class="carousel-item col-md-6 offset-md-3">
+      <div class="carousel-item">
         <a href="cafe_lists/<%= @cafe_lists_carousel[2].id %>">
-            <% if @cafe_lists_carousel[2].cafe_list_images.blank? %>
-                        <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
-                      <% else %>
-                        <%= image_tag @cafe_lists_carousel[2].cafe_list_images[0].variant(resize_to_limit: [500, 500]) %>
-                      <% end %>
+          <% if @cafe_lists_carousel[2].cafe_list_images.blank? %>
+            <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+          <% else %>
+            <%= image_tag @cafe_lists_carousel[2].cafe_list_images[0].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+          <% end %>
         </a>
       </div>
   </div>
@@ -46,6 +46,33 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block w-100' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block w-100' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block w-100' %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>-->
 
 <!--おすすめカフェ　カード-->
 <!--ループ書く-->

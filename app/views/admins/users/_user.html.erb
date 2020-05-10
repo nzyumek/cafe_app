@@ -1,0 +1,19 @@
+<tr>
+    <td>
+        <%= user.id %>
+    </td>
+    <td>
+        <%= user.name %>
+    </td>
+    <td>
+        <%= user.created_at %>
+    </td>
+    <td>
+        <%= user.email %>
+    </td>
+    <td>
+        <%= link_to 'Show', admins_user_path(user), class: "btn btn-outline-primary" %>
+        <%= link_to 'Edit', edit_admins_user_path(user), class: "btn btn-outline-primary" %>
+        <%= link_to 'Destroy', admins_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    </td>
+</tr>

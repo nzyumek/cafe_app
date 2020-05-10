@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-
+  
+  namespace :admins do
+    resources :cafe_lists
+    resources :users
+  end
+  
   resources :beantags
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
+  }
   devise_for :users, controllers: { registrations: 'users/registrations' }
   get "users/show" => "users#show"
   

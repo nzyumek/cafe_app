@@ -1,0 +1,19 @@
+<tr>
+    <td>
+        <%= cafe_list.id %>
+    </td>
+    <td>
+        <%= cafe_list.title %>
+    </td>
+    <td>
+        <%= cafe_list.created_at %>
+    </td>
+    <td>
+        <%#= cafe_list.user %>
+    </td>
+    <td>
+        <%= link_to 'Show', admins_cafe_list_path(cafe_list), class: "btn btn-outline-primary" %>
+        <%= link_to 'Edit', edit_admins_cafe_list_path(cafe_list), class: "btn btn-outline-primary" %>
+        <%= link_to 'Destroy', admins_cafe_list_path(cafe_list), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    </td>
+</tr>

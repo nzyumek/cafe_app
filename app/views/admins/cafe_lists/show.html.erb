@@ -1,10 +1,12 @@
+<h1>Admins::CafeLists#show</h1>
+<p>Find me in app/views/admins/cafe_lists/show.html.erb</p>
 <h3><%= @cafe_list.title %></h3>
 <div class="row">
     <div class="col-md-6 offset-md-3">
       <% if @cafe_list.cafe_list_images[0].blank? %>
-        <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+        <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
       <% else %>
-        <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+        <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]) %>
       <% end %>
       </br>
     </div>
@@ -16,7 +18,7 @@
         <li class="list-group-item">
         店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
-        住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></li>
+        住所: <%= safe_join(@cafe_list.location.split("\n"),tag(:br)) %>
         <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></li>
         <li class="list-group-item">
         アクセス: <%= safe_join(@cafe_list.access.split("\n"),tag(:br)) %></li>
@@ -41,7 +43,7 @@
         <li class="list-group-item">
         キャッシュレス決済: <%= safe_join(@cafe_list.cashless.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
-        Url: <a href="<%= @cafe_list.url %>" class="text-dark"><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
+        Url: <a href="<%= @cafe_list.url %> class="text-dark><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
         <li class="list-group-item">
         Last Update at <%= l @cafe_list.updated_at %> <!--by <#%= @cafe_list.user.name %>--></li>
       </div>
@@ -62,6 +64,7 @@
             <!--星評価-->
 
           <!--/星評価-->
+  
             <p><%= review.content %></p>
           </div>
         </div>
@@ -90,23 +93,23 @@
   <div class="carousel-inner col-md-6 offset-md-3">
       <div class="carousel-item active">
         <% if @cafe_list.cafe_list_images[0].blank? %>
-          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
         <% else %>
-          <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+          <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]) %>
         <% end %>
       </div>
       <div class="carousel-item col-md-6 offset-md-3">
         <% if @cafe_list.cafe_list_images[1].blank? %>
-          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
         <% else %>
-          <%= image_tag @cafe_list.cafe_list_images[1].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+          <%= image_tag @cafe_list.cafe_list_images[1].variant(resize_to_limit: [500, 500]) %>
         <% end %>
       </div>
       <div class="carousel-item col-md-6 offset-md-3">
         <% if @cafe_list.cafe_list_images[2].blank? %>
-          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
+          <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto' %>
         <% else %>
-          <%= image_tag @cafe_list.cafe_list_images[2].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
+          <%= image_tag @cafe_list.cafe_list_images[2].variant(resize_to_limit: [500, 500]) %>
         <% end %>
       </div>
   </div>

@@ -55,7 +55,11 @@ class CafeListsController < ApplicationController
   def create
     #cafe_list_params[:image_url].each do |a|
       @cafe_list = CafeList.new(cafe_list_params) #clone.merge({image: a}))
-      @cafe_list.user_id = current_user.id
+      #if user_signed_in?
+        @cafe_list.user_id = current_user.id
+      #else
+        #@cafe_list.user_id = nil
+      #end
       # @cafe_list.cafe_list_images.create(image_params)
       respond_to do |format|
         if @cafe_list.save
@@ -74,6 +78,8 @@ class CafeListsController < ApplicationController
   def update
     if @cafe_list.user != current_user
       redirect_to @cafe_list
+    #elsif admin_signed_in?
+      
     end
       @cafe_list.cafe_list_images.detach
     #cafe_list_params[:image_url].each do |a|
@@ -117,7 +123,7 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, :access, :parking, :openingtime, :dayoff, :tel, :envir, :wifi, :cashless, :reservation, cafe_list_images: [], beantag_ids: [] )
+      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, :access, :prefecture, :ward, :parking, :openingtime, :dayoff, :tel, :envir, :wifi, :cashless, :reservation, cafe_list_images: [], beantag_ids: [] )
     end
 
     
