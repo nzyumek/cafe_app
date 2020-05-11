@@ -19,6 +19,7 @@ class CafeListsController < ApplicationController
     params[:location].blank? ? params[:location]="" : params[:location]
     
     @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ? AND location LIKE ?", "%" + params[:title] + "%", "%" + params[:bean] + "%", "%" + params[:location] + "%")
+    @cafe_lists = CafeList.page(params[:page]).per(5).order(:id)
     #elsif params[:bean]
       #  @cafe_lists = CafeList.where("bean LIKE ?", "%" + params[:bean] + "%")
     #elsif params[:location]

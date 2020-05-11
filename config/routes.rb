@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :news
   namespace :admins do
     resources :cafe_lists
     resources :users
