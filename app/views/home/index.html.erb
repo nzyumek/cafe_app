@@ -83,7 +83,7 @@
     <div class="row">
       <% @cafe_lists.each do |cafe_list| %>
         <div class="col-md-4 mb-3">
-          <div class="card">
+          <div class="card h-100">
             <a href="cafe_lists/<%= cafe_list.id %>">
               <% if cafe_list.cafe_list_images.blank? %>
                 <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' %>

@@ -8,13 +8,13 @@
             <%= f.text_field :title %>
             <%= f.text_field :bean %>
             <%= f.text_field :location %>
-            <%= f.text_field :image %>
             <%= f.submit 'Search', :name => nil %>
           <% end %>
                     
           <%= link_to 'Clear', cafe_lists_path %>
           
       </nav>
+      <% if admin_signed_in? %>
       <tr>
         <th scope="col"></th>
         <th scope="col">Title</th>
@@ -32,42 +32,38 @@
   </table>
   <%= paginate(@cafe_lists) %>
   
-<div class="card-deck">
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+  <% else %>
+  
+   <div class="container mt-5">
+    <div class="row">
+      <% @cafe_lists.each do |cafe_list| %>
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <a href="cafe_lists/<%= cafe_list.id %>">
+              <% if cafe_list.cafe_list_images.blank? %>
+                <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' %>
+              <% else %>
+                <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]) %>
+              <% end %>
+            </a>
+            <div class="card-body">
+              <a href="cafe_lists/<%= cafe_list.id %>">
+                <h5 class="card-title text-dark"><%= cafe_list.title %></h5>
+              </a>
+              <p class="card-text"><%= cafe_list.info %></p>
+              <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">More</a>
+            </div>
+          </div>
+        </div>
+      <% end %>     
     </div>
   </div>
-</div>
-
+  <%= paginate(@cafe_lists) %>
+  <% end %>
 <br>
 <% if user_signed_in? %>
   <%= link_to 'カフェを登録', new_cafe_list_path %>
+<% elsif admin_signed_in?%>
 <% else %>
   <%= link_to 'ログインし、カフェを登録', new_user_session_path %>
 <% end %>

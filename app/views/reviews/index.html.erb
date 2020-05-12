@@ -31,13 +31,19 @@
             <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
             <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
         </div>
+      <% elsif admin_signed_in? %>
+        <div class="col-md-12 edit-button">
+            <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
+            <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
+        </div>
       <% end %>
     </div>
   <% end %>
 <% end %>
 
 <% if user_signed_in? %>
-  <%= link_to '口コミを投稿', new_cafe_list_review_path(@cafe_list_id) %> 
+  <%= link_to '口コミを投稿', new_cafe_list_review_path(@cafe_list_id) %>
+<% elsif admin_signed_in? %>
 <% else %>
   <%= link_to 'ログインし、口コミを投稿', new_user_session_path %>
 <% end %>

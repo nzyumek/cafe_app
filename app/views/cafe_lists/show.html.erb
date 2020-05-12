@@ -123,6 +123,9 @@
 <% if @cafe_list.user == current_user %>
   <td><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></td><br/>
   <td><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% elsif admin_signed_in? %>
+  <td><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></td><br/>
+  <td><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <% end %>
 </br>
 <%= link_to '戻る', cafe_lists_path %>
