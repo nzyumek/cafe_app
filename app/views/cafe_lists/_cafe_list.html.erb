@@ -18,7 +18,7 @@
             <%= render partial: "cafe_lists/beantag", collection: cafe_list.beantags, as: :beantag %>
           </div>
         </td>
-        <td><%= cafe_list.location %></td>
+        <td><%= cafe_list.prefecture %><%= cafe_list.ward %><%= cafe_list.location %></td>
         <% if admin_signed_in? %>　<!--adminに変わる-->
         <td>
           <%= link_to 'Show', cafe_list, class: "btn btn-outline-primary" %>

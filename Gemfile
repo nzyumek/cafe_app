@@ -62,6 +62,7 @@ gem 'acts_as_list', '~> 0.9.19'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 gem 'devise', '~> 4.2'
@@ -76,3 +77,4 @@ gem 'image_processing', '~> 1.2'
 
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+

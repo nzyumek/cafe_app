@@ -38,8 +38,8 @@ class CafeListsController < ApplicationController
   # GET /cafe_lists/1
   # GET /cafe_lists/1.json
   def show
-    @review = Review.last(1)
-    @reviews = @cafe_list.reviews
+    # @review = Review.last(1)
+    @review = @cafe_list.reviews.last(1)
   end
 
   # GET /cafe_lists/new
@@ -86,8 +86,7 @@ class CafeListsController < ApplicationController
     #cafe_list_params[:image_url].each do |a|
       respond_to do |format|
         if @cafe_list.update(cafe_list_params)#.clone.merge({image_url: a}))
-          format.html { redirect_to @cafe_list, notice: 'Cafe was successfully updated.' and return}
-          format.json { render :show, status: :ok, location: @cafe_list and return}
+          cafe_lists_path and return
         else
           format.html { render :edit }
           format.json { render json: @cafe_list.errors, status: :unprocessable_entity }

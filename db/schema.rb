@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_095645) do
+ActiveRecord::Schema.define(version: 2020_05_13_094157) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -101,6 +101,24 @@ ActiveRecord::Schema.define(version: 2020_05_10_095645) do
     t.index ["cafe_list_id"], name: "index_infos_on_cafe_list_id"
   end
 
+  create_table "inquiries", force: :cascade do |t|
+    t.string "name"
+    t.text "message"
+    t.string "mail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.date "date"
+    t.text "content"
+    t.integer "admin_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_news_on_admin_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "cafe_list_id", null: false
     t.float "rate"
@@ -122,6 +140,10 @@ ActiveRecord::Schema.define(version: 2020_05_10_095645) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
     t.string "name"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -132,5 +154,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_095645) do
   add_foreign_key "cafe_list_beantags", "cafe_lists"
   add_foreign_key "cafe_list_images", "cafe_lists"
   add_foreign_key "infos", "cafe_lists"
+  add_foreign_key "news", "admins"
   add_foreign_key "reviews", "cafe_lists"
 end

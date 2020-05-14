@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'inquiry' => 'inquiry#index'
+  post 'inquiry/confirm' => 'inquiry#confirm'
+  post 'inquiry/thanks' => 'inquiry#thanks'
+  
   resources :news
   namespace :admins do
     resources :cafe_lists
@@ -27,6 +31,8 @@ Rails.application.routes.draw do
     # 変更したらconsoleでrails routesで確認
     # 一部のコントローラーでparamsの値が変わったことによる対応が必要なことに注意
   end
+  
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 # TODO 0426
 # ここから削除

@@ -29,3 +29,20 @@ footer {
 .carousel{
   min-height: 180px;
 }
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  .card {
+    height: 97%;
+    margin-bottom: 3%;
+  }
+}
+
+.card-img-top {
+    max-width: 100%;
+    flex-shrink:0;
+    min-height: 180px;
+ }

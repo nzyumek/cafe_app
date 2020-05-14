@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
     
     def index
         @cafe_list_id = params[:cafe_list_id]
+        @cafe_list = CafeList.find(params[:cafe_list_id])
         
         # TODO @cafe_list_idを利用してReviewsテーブルから該当のReviewを持ってくる
         # TODO @reviewsという配列に格納する

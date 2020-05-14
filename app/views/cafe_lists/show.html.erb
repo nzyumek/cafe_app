@@ -50,23 +50,25 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
     最新の口コミ<br />
-    <% @review.each do |review| %>
+    
+    <% if !@review.blank? %>
       <div class="row reviews">
 
         <div class="col-md-6 mb-3">
           <div class=" reviews-content">
   
   
-            <h4 class="mb-3">評価：<%= review.rate %>点 | <%= review.title %></h4>
+            <h4 class="mb-3">評価：<%#= @review.rate %>点 | <%#= @review.title %></h4>
   
             <!--星評価-->
 
           <!--/星評価-->
-            <p><%= review.content %></p>
+            <p><%#= @review.content %></p>
           </div>
         </div>
       </div>
-    <% end %>
+    <% end %>  
+    
     <%= link_to 'More', cafe_list_reviews_path(@cafe_list) %>
   </div>
 </div>
