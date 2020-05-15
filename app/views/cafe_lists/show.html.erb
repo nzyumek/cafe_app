@@ -57,8 +57,12 @@
         <div class="col-md-6 mb-3">
           <div class=" reviews-content">
   
-  
-            <h4 class="mb-3">評価：<%#= @review.rate %>点 | <%#= @review.title %></h4>
+            <%= @review %>
+            <h4 class="mb-3">評価：<%#= @review.rate %>点 | 
+            <%# if @review.title.blank? %> no title
+            <%# else %>
+            <%#= @review.title %>
+            <%# end %></h4>
   
             <!--星評価-->
 

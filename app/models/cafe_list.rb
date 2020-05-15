@@ -6,6 +6,7 @@ class CafeList < ApplicationRecord
     has_many :cafe_list_beantags
     has_many :beantags, through: :cafe_list_beantags
     accepts_nested_attributes_for :cafe_list_beantags
+    validates :title, :prefecture, :ward, :location, :bean, presence: true
     #validate :validate_cafe_list_images
 
       ##def validate_cafe_list_images
