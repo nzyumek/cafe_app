@@ -1,4 +1,4 @@
-<%= form_with(model: @cafe_list, local: true) do |form| %>
+
   <% if @cafe_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cafe_list.errors.count, "error") %> prohibited this @cafe_list from being saved:</h2>
@@ -49,7 +49,7 @@
   </div>
   <div class="field form-group">
     <%= form.label "定休日" %>
-    <%= form.text_area :dayoff, class:"form-control" %>
+    <%= form.select :dayoff, [['日曜日', '日曜日'],['月曜日', '月曜日'],['火曜日', '火曜日'],['水曜日', '水曜日'],['木曜日', '木曜日'],['金曜日', '金曜日'],['土曜日', '土曜日'], ['不定休', '不定休'],['無し', '無し']] %>
   </div>
   <div class="field form-group">
     <%= form.label "駐車場" %>
@@ -69,12 +69,19 @@
   </div>
   <div class="field form-group">
     <%= form.label "Wifi" %>
-    <%= form.text_area :wifi, class:"form-control" %>
+    <%= form.radio_button :wifi, :yes %>
+    <%= form.label :wifi, "有",{value: :yes, style: "display: inline-block;"} %>
+    <%= form.radio_button :wifi, :no %>
+    <%= form.label :wifi, "無",{value: :no, style: "display: inline-block;"} %>
   </div>
   <div class="field form-group">
     <%= form.label "キャッシュレス決済" %>
-    <%= form.text_area :cashless, class:"form-control" %>
-  </div>
+    <% %w(Visa Master JCB AMEX Paypay LinePay メルカリPay 現金のみ).each.with_index do |cashless,i| %>
+    <label>
+      <%= check_box_tag 'cafe_list[cashlesses][]', cashless,false,id:"cafe_list_cashlesses_#{i}"%>
+      <%= cashless %>
+    </label>
+    <% end %>
   <div class="field form-group">
     <%= form.label :url %>
     <%= form.text_area :url, class:"form-control" %>
@@ -92,4 +99,3 @@
   <div class="actions">
     <%= form.submit class: "btn btn-primary" %>
   </div>
-<% end %>  

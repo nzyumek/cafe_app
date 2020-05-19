@@ -47,17 +47,15 @@ class ReviewsController < ApplicationController
     end
     
     def update
-      if @review.user != current_user
-        redirect_to cafe_list_reviews_path
-      end      
-      @review = Review.find(params[:id])
-      @cafe_list_id = params[:cafe_list_id]
+        @review = Review.find(params[:id])
+        @cafe_list_id = params[:cafe_list_id]
+        #@review.admin_id = current_admin.id
     #cafe_list_params[:image_url].each do |a|
-        if @review.update(review_params)
+        if @review.user_id = current_user.id && @review.update(review_params) or admin_signed_in? && @review.update(review_params)
             redirect_to cafe_list_reviews_path
         else
             render :edit
-        end
+        end   
       #respond_to do |format|
         #if @review.update(review_params)#.clone.merge({image_url: a}))
           #format.html { redirect_to reviews_path, notice: 'Cafe was successfully updated.' and return}

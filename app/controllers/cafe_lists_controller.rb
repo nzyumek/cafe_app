@@ -1,4 +1,5 @@
 class CafeListsController < ApplicationController
+  #prepend_before_action :authenticate_user! && :authenticate_admin!, only: [:edit, :destroy] 
   before_action :set_cafe_list, only: [:show, :edit, :update, :destroy, :sort, :upload_file]
   before_action :set_current_user
 
@@ -39,7 +40,7 @@ class CafeListsController < ApplicationController
   # GET /cafe_lists/1.json
   def show
     # @review = Review.last(1)
-    @review = @cafe_list.reviews.last(1)
+    @review = @cafe_list.reviews.last
   end
 
   # GET /cafe_lists/new
@@ -77,11 +78,7 @@ class CafeListsController < ApplicationController
   # PATCH/PUT /cafe_lists/1
   # PATCH/PUT /cafe_lists/1.json
   def update
-    if @cafe_list.user != current_user
-      redirect_to @cafe_list
     #elsif admin_signed_in?
-      
-    end
       @cafe_list.cafe_list_images.detach
     #cafe_list_params[:image_url].each do |a|
       respond_to do |format|
@@ -123,7 +120,7 @@ class CafeListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cafe_list_params
-      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, :access, :prefecture, :ward, :parking, :openingtime, :dayoff, :tel, :envir, :wifi, :cashless, :reservation, cafe_list_images: [], beantag_ids: [] )
+      params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, :access, :prefecture, :ward, :parking, :openingtime, :dayoff, :tel, :envir, :wifi, :reservation, cashlesses: [], cafe_list_images: [], beantag_ids: [] )
     end
 
     

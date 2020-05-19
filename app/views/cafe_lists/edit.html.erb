@@ -1,6 +1,10 @@
 <h1>Editing Cafe</h1>
 
-<%= render 'form', post: @cafe_lists %>
+<%= form_with(model: @cafe_list, url: cafe_list_path, local: true) do |form| %>
+    <%= render :partial => 'form', :locals => {:form => form, :edit_flag => true}, post: @cafe_lists %>
+<% end %>
+
+
 
 <%= link_to 'Show', @cafe_lists %> |
 <%= link_to 'Back', cafe_lists_path %>
