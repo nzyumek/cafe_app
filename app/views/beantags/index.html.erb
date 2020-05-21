@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Cafe list</th>
+      <th>Info</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @beantags.each do |beantag| %>
       <tr>
         <td><%= beantag.name %></td>
-        <td><%= beantag.cafe_list_id %></td>
+        <td><%= beantag.info %></td>
         <td><%= link_to 'Show', beantag %></td>
         <td><%= link_to 'Edit', edit_beantag_path(beantag) %></td>
         <td><%= link_to 'Destroy', beantag, method: :delete, data: { confirm: 'Are you sure?' } %></td>

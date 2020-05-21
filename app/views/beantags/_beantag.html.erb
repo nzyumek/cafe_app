@@ -1,6 +1,0 @@
-<div data-model_name="<%= beantag.model_name.singular %>" data-id="<%= beantag.id %>">
-  <%= link_to edit_beantag_path(beantag), remote: true do %><div class="btn btn-secondary mr-1 mb-2"><%= beantag.name %></div><% end %>
-  <%= link_to beantag_path(beantag), method: :delete, remote: true, data: { confirm: "Deleting beantag [#{beantag.name}]. Are you sure?" } do %>
-    <i class="fas fa-times text-danger"></i>
-  <% end %>
-</div>

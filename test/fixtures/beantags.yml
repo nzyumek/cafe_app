@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  cafe_list: one
+  info: MyText
 
 two:
   name: MyString
-  cafe_list: two
+  info: MyText

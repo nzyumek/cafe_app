@@ -80,20 +80,9 @@
   
   <div class="field form-group">
     <%= form.label "豆の種類" %>
-    <%= form.text_area :bean, class:"form-control" %>
-    <%= link_to new_beantag_path, class: "btn p-0 text-dark", remote: true do %>
-      <i class = "fas fa-plus align-middle pr-1"></i><span class="align-middle">豆タグ作成</span>
+    <%= collection_check_boxes(:cafe_list, :beantag_ids, Beantag.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
     <% end %>
-    <div class="field">
-      <%= form.collection_check_boxes :beantag_ids, @cafe_list.beantags, :id, :name do |b| %>
-        <%= b.label(class: "form-check") do %>
-          <%= b.check_box(class: "form-check-input") %>
-          <div class="btn btn-secondary" >
-            <%= b.text %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
   </div>
     <div class="field form-group">
     <%= form.label "店の特色" %>

@@ -14,7 +14,7 @@ class BeantagsTest < ApplicationSystemTestCase
     visit beantags_url
     click_on "New Beantag"
 
-    fill_in "Cafe list", with: @beantag.cafe_list_id
+    fill_in "Info", with: @beantag.info
     fill_in "Name", with: @beantag.name
     click_on "Create Beantag"
 
@@ -26,7 +26,7 @@ class BeantagsTest < ApplicationSystemTestCase
     visit beantags_url
     click_on "Edit", match: :first
 
-    fill_in "Cafe list", with: @beantag.cafe_list_id
+    fill_in "Info", with: @beantag.info
     fill_in "Name", with: @beantag.name
     click_on "Update Beantag"
 

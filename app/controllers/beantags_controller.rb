@@ -69,6 +69,6 @@ class BeantagsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def beantag_params
-      params.require(:beantag).permit(:name, :cafe_list_id)
+      params.require(:beantag).permit(:name, :info)
     end
 end

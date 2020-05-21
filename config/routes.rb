@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :beantags
   resources :cafe_list_cashlesstags
   resources :cashlesstags
   #get 'inquiry' => 'inquiry#index'
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
     resources :users
   end
   
-  resources :beantags
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }

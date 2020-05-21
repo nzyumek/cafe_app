@@ -31,7 +31,7 @@
         駐車場: <%= safe_join(@cafe_list.parking.split("\n"),tag(:br)) %></br>
         キャッシュレス決済: <%= render partial: "cafe_lists/cashlesstag", collection: @cafe_list.cashlesstags, as: :cashlesstag %></li>
         <li class="list-group-item">
-        豆の種類: <%= safe_join(@cafe_list.bean.split("\n"),tag(:br)) %></br>
+        豆の種類: <%= render partial: "cafe_lists/beantag", collection: @cafe_list.beantags, as: :beantag %></br>
         店の特色: <%= safe_join(@cafe_list.info.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
         Last Update at <%= l @cafe_list.updated_at %> <!--by <#%= @cafe_list.user.name %>--></li>

@@ -1,35 +1,27 @@
-<div class="modal fade" id="beantagModal" tabindex="-1" role="dialog" aria-labelledby="beantagModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <%= form_with(model: beantag, remote: true) do |form| %>
-        <div class="modal-header">
-          <h5 class="modal-title" id="beantagModal"><%= "#{params[:action].camelize} #{beantag.model_name.human}" %></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <% if beantag.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(beantag.errors.count, "error") %> prohibited this beantag from being saved:</h2>
-              <ul>
-                <% beantag.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="field">
-            <%= form.label :name %>
-            <%= form.text_field :name %>
-          </div>
-          <%= render 'index' %>
-        </div>
-        <div class="modal-footer actions">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= form.submit %>
-        </div>
-      <% end %>
+<%= form_with(model: beantag, local: true) do |form| %>
+  <% if beantag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(beantag.errors.count, "error") %> prohibited this beantag from being saved:</h2>
+
+      <ul>
+        <% beantag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
-</div>
+
+  <div class="field">
+    <%= form.label :info %>
+    <%= form.text_area :info %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -17,7 +17,7 @@ class BeantagsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create beantag" do
     assert_difference('Beantag.count') do
-      post beantags_url, params: { beantag: { cafe_list_id: @beantag.cafe_list_id, name: @beantag.name } }
+      post beantags_url, params: { beantag: { info: @beantag.info, name: @beantag.name } }
     end
 
     assert_redirected_to beantag_url(Beantag.last)
@@ -34,7 +34,7 @@ class BeantagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update beantag" do
-    patch beantag_url(@beantag), params: { beantag: { cafe_list_id: @beantag.cafe_list_id, name: @beantag.name } }
+    patch beantag_url(@beantag), params: { beantag: { info: @beantag.info, name: @beantag.name } }
     assert_redirected_to beantag_url(@beantag)
   end
 
