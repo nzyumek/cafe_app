@@ -1,6 +1,6 @@
 <h3><%= @cafe_list.title %></h3>
 <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-12 col-lg-6 offset-lg-3">
       <% if @cafe_list.cafe_list_images[0].blank? %>
         <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
       <% else %>
@@ -11,12 +11,13 @@
 </div>
 
 <ul class="list-group">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-12 col-lg-6 offset-lg-3">
         <li class="list-group-item">
         店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
         住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></br>
-        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></br>
+        <div class="google_map">
+        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="auto" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div></br>
         アクセス: <%= safe_join(@cafe_list.access.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
         営業時間: <%= safe_join(@cafe_list.openingtime.split("\n"),tag(:br)) %></br>
@@ -39,7 +40,7 @@
 </ul>
 
 <div class="row">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-12 col-lg-6 offset-lg-3">
     最新の口コミ<br />
     
     <% if !@review.blank? %>
@@ -78,7 +79,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-12 col-lg-6 offset-lg-3">
     Gallery:
   </div>
 </div>
@@ -93,7 +94,7 @@
   </ol>
   
       
-  <div class="carousel-inner col-md-6 offset-md-3">
+  <div class="carousel-inner col-md-12 col-lg-6 offset-lg-3">
       <div class="carousel-item active">
         <% if @cafe_list.cafe_list_images[0].blank? %>
           <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
@@ -101,14 +102,14 @@
           <%= image_tag @cafe_list.cafe_list_images[0].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
         <% end %>
       </div>
-      <div class="carousel-item col-md-6 offset-md-3">
+      <div class="carousel-item col-md-12 col-lg-6 offset-lg-3">
         <% if @cafe_list.cafe_list_images[1].blank? %>
           <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
         <% else %>
           <%= image_tag @cafe_list.cafe_list_images[1].variant(resize_to_limit: [500, 500]), :class => 'd-block mx-auto' %>
         <% end %>
       </div>
-      <div class="carousel-item col-md-6 offset-md-3">
+      <div class="carousel-item col-md-12 col-lg-6 offset-lg-3">
         <% if @cafe_list.cafe_list_images[2].blank? %>
           <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
         <% else %>

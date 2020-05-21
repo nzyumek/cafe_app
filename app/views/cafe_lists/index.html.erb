@@ -20,9 +20,7 @@
         <th scope="col">Title</th>
         <th scope="col">Bean</th>
         <th scope="col">Location</th>
-        <% if admin_signed_in? %> <!-- admin-->
         <th scope="col">Action(admin)</th>
-        <% end %>
         <th scope="col">Latest Update</th>
       </tr>
     </thead>
@@ -35,15 +33,15 @@
   <% else %>
   
    <div class="container mt-5">
-    <div class="row">
+    <div class="row row-eq-height">
       <% @cafe_lists.each do |cafe_list| %>
         <div class="col-md-4 mb-3">
-          <div class="card h-100">
+          <div class="card">
             <a href="cafe_lists/<%= cafe_list.id %>">
               <% if cafe_list.cafe_list_images.blank? %>
                 <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' , :class => 'card-img-top'%>
               <% else %>
-                <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]) %>
+                <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]), :class => 'card-img-top' %>
               <% end %>
             </a>
             <div class="card-body">
