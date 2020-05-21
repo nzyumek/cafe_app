@@ -1,0 +1,2 @@
+module CafeListCashlesstagsHelper
+end

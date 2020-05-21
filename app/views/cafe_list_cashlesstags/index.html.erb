@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cafe List Cashlesstags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cafe list</th>
+      <th>Cashlesstag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cafe_list_cashlesstags.each do |cafe_list_cashlesstag| %>
+      <tr>
+        <td><%= cafe_list_cashlesstag.cafe_list_id %></td>
+        <td><%= cafe_list_cashlesstag.cashlesstag_id %></td>
+        <td><%= link_to 'Show', cafe_list_cashlesstag %></td>
+        <td><%= link_to 'Edit', edit_cafe_list_cashlesstag_path(cafe_list_cashlesstag) %></td>
+        <td><%= link_to 'Destroy', cafe_list_cashlesstag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cafe List Cashlesstag', new_cafe_list_cashlesstag_path %>

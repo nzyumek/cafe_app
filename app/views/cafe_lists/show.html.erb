@@ -29,7 +29,7 @@
         環境: <%= safe_join(@cafe_list.envir.split("\n"),tag(:br)) %></br>
         Wifi: <%= safe_join(@cafe_list.wifi.split("\n"),tag(:br)) %></br>
         駐車場: <%= safe_join(@cafe_list.parking.split("\n"),tag(:br)) %></br>
-        キャッシュレス決済: <%= @cafe_list.cashless %></li>
+        キャッシュレス決済: <%= render partial: "cafe_lists/cashlesstag", collection: @cafe_list.cashlesstags, as: :cashlesstag %></li>
         <li class="list-group-item">
         豆の種類: <%= safe_join(@cafe_list.bean.split("\n"),tag(:br)) %></br>
         店の特色: <%= safe_join(@cafe_list.info.split("\n"),tag(:br)) %></li>

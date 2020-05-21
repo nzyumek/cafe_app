@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cashlesstags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cashlesstags.each do |cashlesstag| %>
+      <tr>
+        <td><%= cashlesstag.name %></td>
+        <td><%= link_to 'Show', cashlesstag %></td>
+        <td><%= link_to 'Edit', edit_cashlesstag_path(cashlesstag) %></td>
+        <td><%= link_to 'Destroy', cashlesstag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cashlesstag', new_cashlesstag_path %>

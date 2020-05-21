@@ -1,0 +1,27 @@
+<%= form_with(model: cafe_list_cashlesstag, local: true) do |form| %>
+  <% if cafe_list_cashlesstag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cafe_list_cashlesstag.errors.count, "error") %> prohibited this cafe_list_cashlesstag from being saved:</h2>
+
+      <ul>
+        <% cafe_list_cashlesstag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cafe_list_id %>
+    <%= form.text_field :cafe_list_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cashlesstag_id %>
+    <%= form.text_field :cashlesstag_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

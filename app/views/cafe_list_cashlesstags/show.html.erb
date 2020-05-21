@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cafe list:</strong>
+  <%= @cafe_list_cashlesstag.cafe_list_id %>
+</p>
+
+<p>
+  <strong>Cashlesstag:</strong>
+  <%= @cafe_list_cashlesstag.cashlesstag_id %>
+</p>
+
+<%= link_to 'Edit', edit_cafe_list_cashlesstag_path(@cafe_list_cashlesstag) %> |
+<%= link_to 'Back', cafe_list_cashlesstags_path %>
