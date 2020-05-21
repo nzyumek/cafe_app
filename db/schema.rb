@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_094157) do
+ActiveRecord::Schema.define(version: 2020_05_20_112933) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 2020_05_13_094157) do
     t.index ["cafe_list_id"], name: "index_cafe_list_beantags_on_cafe_list_id"
   end
 
+  create_table "cafe_list_cashlesstags", force: :cascade do |t|
+    t.integer "cafe_list_id", null: false
+    t.integer "cashlesstag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cafe_list_id"], name: "index_cafe_list_cashlesstags_on_cafe_list_id"
+    t.index ["cashlesstag_id"], name: "index_cafe_list_cashlesstags_on_cashlesstag_id"
+  end
+
   create_table "cafe_list_images", force: :cascade do |t|
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
@@ -83,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_094157) do
     t.string "parking"
     t.string "openingtime"
     t.string "dayoff"
-    t.string "tel"
+    t.integer "firsttel"
     t.string "envir"
     t.string "wifi"
     t.string "cashless"
@@ -91,6 +100,16 @@ ActiveRecord::Schema.define(version: 2020_05_13_094157) do
     t.integer "user_id"
     t.string "prefecture"
     t.string "ward"
+    t.integer "tel_2"
+    t.integer "tel_3"
+    t.integer "midtel"
+    t.integer "lasttel"
+  end
+
+  create_table "cashlesstags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "infos", force: :cascade do |t|
@@ -152,6 +171,8 @@ ActiveRecord::Schema.define(version: 2020_05_13_094157) do
   add_foreign_key "beantags", "cafe_lists"
   add_foreign_key "cafe_list_beantags", "beantags"
   add_foreign_key "cafe_list_beantags", "cafe_lists"
+  add_foreign_key "cafe_list_cashlesstags", "cafe_lists"
+  add_foreign_key "cafe_list_cashlesstags", "cashlesstags"
   add_foreign_key "cafe_list_images", "cafe_lists"
   add_foreign_key "infos", "cafe_lists"
   add_foreign_key "news", "admins"

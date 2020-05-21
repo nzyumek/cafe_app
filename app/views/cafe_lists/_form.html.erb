@@ -1,4 +1,3 @@
-
   <% if @cafe_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cafe_list.errors.count, "error") %> prohibited this @cafe_list from being saved:</h2>
@@ -13,6 +12,7 @@
     <%= form.label "店名" %>
     <%= form.text_field :title, class:"form-control" %>
   </div>
+  
   <div class="field form-group">
     <%= form.label "所在地情報" %></br>
     <%= form.label "都道府県" %>
@@ -22,6 +22,77 @@
     <%= form.label "番地・ビル名・階数" %>
     <%= form.text_area :location, class:"form-control" %>
   </div>
+  <div class="field form-group">
+    <%= form.label "アクセス" %>
+    <%= form.text_area :access, class:"form-control" %>
+  </div>
+  
+  <div class="field form-group">
+    <%= form.label "営業時間" %>
+    <%= form.text_area :openingtime, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "定休日" %>
+    <%= form.select :dayoff, [['日曜日', '日曜日'],['月曜日', '月曜日'],['火曜日', '火曜日'],['水曜日', '水曜日'],['木曜日', '木曜日'],['金曜日', '金曜日'],['土曜日', '土曜日'], ['不定休', '不定休'],['無し', '無し']] %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "電話番号" %>
+    <%= form.text_area :firsttel %>-<%= form.text_area :midtel %>-<%= form.text_area :lasttel %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "予約" %>
+    <label>
+    <%= form.radio_button :reservation, "可" %> 可 </label>
+    <label>
+    <%= form.radio_button :reservation, "不可" %> 不可 </label>
+  </div>
+  <div class="field form-group">
+    <%= form.label :url %>
+    <%= form.text_area :url, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "環境" %>
+    <%= form.text_area :envir, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label "Wifi" %>
+    <label>
+    <%= form.radio_button :wifi, "有" %> 有 </label>
+    <label>
+    <%= form.radio_button :wifi, "無" %> 無 </label>
+  </div>
+  <div class="field form-group">
+    <%= form.label "駐車場" %>
+    <label>
+    <%= form.radio_button :parking, "有" %> 有 </label>
+    <label>
+    <%= form.radio_button :parking, "無" %> 無 </label>
+  </div>
+  <div class="field form-group">
+    <%= form.label "キャッシュレス決済" %>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="visa">
+      <label class="form-check-label" for="inlineCheckbox1">Visa</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="master">
+      <label class="form-check-label" for="inlineCheckbox2">Master</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="jcb">
+      <label class="form-check-label" for= :cashless >JCB</label>
+    </div>
+    <%# %w(Visa Master JCB AMEX Paypay LinePay メルカリPay 現金のみ).each.with_index do |cashless,i| %>
+    <label>
+      <%#= check_box_tag 'cafe_list[cashlesses][]', cashless,false,id:"cafe_list_cashlesses_#{i}"%>
+      <%#= cashless %>
+    </label>
+    <%# end %>
+</div>
+
+  
   <div class="field form-group">
     <%= form.label "豆の種類" %>
     <%= form.text_area :bean, class:"form-control" %>
@@ -39,55 +110,8 @@
       <% end %>
     </div>
   </div>
-  <div class="field form-group">
-    <%= form.label "アクセス" %>
-    <%= form.text_area :access, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "営業時間" %>
-    <%= form.text_area :openingtime, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "定休日" %>
-    <%= form.select :dayoff, [['日曜日', '日曜日'],['月曜日', '月曜日'],['火曜日', '火曜日'],['水曜日', '水曜日'],['木曜日', '木曜日'],['金曜日', '金曜日'],['土曜日', '土曜日'], ['不定休', '不定休'],['無し', '無し']] %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "駐車場" %>
-    <%= form.text_area :parking, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "連絡先" %>
-    <%= form.text_area :tel, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "予約" %>
-    <%= form.text_area :reservation, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "環境" %>
-    <%= form.text_area :envir, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "Wifi" %>
-    <%= form.radio_button :wifi, :yes %>
-    <%= form.label :wifi, "有",{value: :yes, style: "display: inline-block;"} %>
-    <%= form.radio_button :wifi, :no %>
-    <%= form.label :wifi, "無",{value: :no, style: "display: inline-block;"} %>
-  </div>
-  <div class="field form-group">
-    <%= form.label "キャッシュレス決済" %>
-    <% %w(Visa Master JCB AMEX Paypay LinePay メルカリPay 現金のみ).each.with_index do |cashless,i| %>
-    <label>
-      <%= check_box_tag 'cafe_list[cashlesses][]', cashless,false,id:"cafe_list_cashlesses_#{i}"%>
-      <%= cashless %>
-    </label>
-    <% end %>
-  <div class="field form-group">
-    <%= form.label :url %>
-    <%= form.text_area :url, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label :info %>
+    <div class="field form-group">
+    <%= form.label "店の特色" %>
     <%= form.text_area :info, class:"form-control" %>
   </div>
   

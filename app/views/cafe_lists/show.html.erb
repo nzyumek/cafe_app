@@ -12,36 +12,27 @@
 
 <ul class="list-group">
       <div class="col-md-6 offset-md-3">
-        About <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
         店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
-        住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></li>
-        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></li>
-        <li class="list-group-item">
+        住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></br>
+        <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></br>
         アクセス: <%= safe_join(@cafe_list.access.split("\n"),tag(:br)) %></li>
         <li class="list-group-item">
-        営業時間: <%= safe_join(@cafe_list.openingtime.split("\n"),tag(:br)) %></li>
+        営業時間: <%= safe_join(@cafe_list.openingtime.split("\n"),tag(:br)) %></br>
+        定休日: <%= @cafe_list.dayoff %></li>
         <li class="list-group-item">
-        定休日: <%= safe_join(@cafe_list.dayoff.split("\n"),tag(:br)) %></li>
+        電話番号: <%= @cafe_list.firsttel %>-<%= @cafe_list.midtel %>-<%= @cafe_list.lasttel %></br>
+        予約: <%= @cafe_list.reservation %></br>
+        Url: <a href="<%= @cafe_list.url %>" class="text-primary"><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
         <li class="list-group-item">
-        豆の種類: <%= safe_join(@cafe_list.bean.split("\n"),tag(:br)) %></li>
+        環境: <%= safe_join(@cafe_list.envir.split("\n"),tag(:br)) %></br>
+        Wifi: <%= safe_join(@cafe_list.wifi.split("\n"),tag(:br)) %></br>
+        駐車場: <%= safe_join(@cafe_list.parking.split("\n"),tag(:br)) %></br>
+        キャッシュレス決済: <%= @cafe_list.cashless %></li>
         <li class="list-group-item">
+        豆の種類: <%= safe_join(@cafe_list.bean.split("\n"),tag(:br)) %></br>
         店の特色: <%= safe_join(@cafe_list.info.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        連絡先: <%= safe_join(@cafe_list.tel.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        予約: <%= safe_join(@cafe_list.reservation.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        環境: <%= safe_join(@cafe_list.envir.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        Wifi: <%= safe_join(@cafe_list.wifi.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        駐車場: <%= safe_join(@cafe_list.parking.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        キャッシュレス決済: <%= safe_join(@cafe_list.cashless.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        Url: <a href="<%= @cafe_list.url %>" class="text-dark"><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
         <li class="list-group-item">
         Last Update at <%= l @cafe_list.updated_at %> <!--by <#%= @cafe_list.user.name %>--></li>
       </div>
