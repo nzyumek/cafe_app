@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_042337) do
+ActiveRecord::Schema.define(version: 2020_05_23_022041) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,29 +80,32 @@ ActiveRecord::Schema.define(version: 2020_05_21_042337) do
   end
 
   create_table "cafe_lists", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "bean"
-    t.string "location"
+    t.string "location", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "url"
     t.string "info"
     t.string "access"
     t.string "parking"
-    t.string "openingtime"
+    t.string "openingtime1"
     t.string "dayoff"
-    t.integer "firsttel"
+    t.string "firsttel"
     t.string "envir"
     t.string "wifi"
     t.string "cashless"
     t.string "reservation"
     t.integer "user_id"
-    t.string "prefecture"
-    t.string "ward"
+    t.string "prefecture", null: false
+    t.string "ward", null: false
     t.integer "tel_2"
     t.integer "tel_3"
-    t.integer "midtel"
-    t.integer "lasttel"
+    t.string "midtel"
+    t.string "lasttel"
+    t.string "closingtime2"
+    t.string "closingtime1"
+    t.string "openingtime2"
   end
 
   create_table "cashlesstags", force: :cascade do |t|

@@ -29,7 +29,7 @@
   
   <div class="field form-group">
     <%= form.label "営業時間" %>
-    <%= form.text_area :openingtime, class:"form-control" %>
+    <%= form.text_area :openingtime1, size: "2x1" %> : <%= form.text_area :openingtime2, class:"form-control", size: "2x1"  %> ~ <%= form.text_area :closingtime1, class:"form-control", size: "2x1"  %> :<%= form.text_area :closingtime2, class:"form-control", size: "2x1"  %>
   </div>
   <div class="field form-group">
     <%= form.label "定休日" %>

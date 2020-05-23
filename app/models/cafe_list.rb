@@ -11,6 +11,15 @@ class CafeList < ApplicationRecord
     has_many :beantags, through: :cafe_list_beantags
     accepts_nested_attributes_for :cafe_list_beantags
     
+    VALID_TEL_REGEX = /\A[0-9]+\z/
+    validates :firsttel, :midtel, :lasttel, format: { with: VALID_TEL_REGEX }
+    
+    VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
+    validates :url, format: { with: VALID_URL_REGEX }
+    
+    VALID_TIME_REGEX = /\A[0-9]+\z/
+    validates :openingtime1, :openingtime2, :closingtime1, :closingtime2, format: { with: VALID_TIME_REGEX }
+    
     validates :title, :prefecture, :ward, :location, presence: true
     #validate :validate_cafe_list_images
 

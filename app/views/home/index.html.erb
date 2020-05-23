@@ -86,9 +86,9 @@
           <div class="card">
             <a href="cafe_lists/<%= cafe_list.id %>">
               <% if cafe_list.cafe_list_images.blank? %>
-                <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' , :class => 'card-img-top' %>
+                <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' , :class => 'thumbnail' %>
               <% else %>
-                <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]), :class => 'card-img-top' %>
+                <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]), :class => 'thumbnail' %>
               <% end %>
             </a>
             <div class="card-body">
