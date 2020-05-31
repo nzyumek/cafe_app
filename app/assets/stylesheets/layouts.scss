@@ -8,7 +8,7 @@
 
 main {
   // height: calc(100vh - 50px);
-  min-height: calc(100vh - 48px - 60px);//0409修正
+  min-height: calc(100vh - 60px - 60px);//0409修正
   // padding-top: 60px
 }
 
@@ -17,15 +17,14 @@ body {
     background-color: var(--main-color);
 }
 
-.header {
+header {
   height: 60px;
 }
 
-.header > .navbar {
-  background-image:url(背景画像のurl);
-  min-height:500px;
-  margin-top:-70px;
-}
+// .header > .navbar {
+//   background-image:url(背景画像のurl);
+//   min-height: 500px;
+// }
 
 .bg-home {
   background-color: #4B3A33;
@@ -42,6 +41,9 @@ body {
 .container-fluid {
   padding-right: 0px !important;
   padding-left: 0px !important;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  background-color: #FDF2EB ;
 } 
  
  

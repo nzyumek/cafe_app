@@ -14,20 +14,9 @@
   .carousel-item img {
     height:45vh;
   }
-}
+  
 
-.conA {
-    background-color: #465251;
-    background-color: var(--main-color);
-    color: #fff;
-    color: var(--text-bright-color);
-}
-
-.conB {
-    background-color: #465251;
-    background-color: var(--main-color);
-    color: #fff;
-    color: var(--text-bright-color);
+  
 }
 
 
@@ -42,3 +31,161 @@
     
     
 // }
+
+/* conA: ヒーローイメージ*/
+
+.conA {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    // height: calc(100vh - 60px); // 参考まで
+    height: 100vh;
+    margin: 0px !important;
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(makbanner.JPG); */
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+    color: var(--text-bright-color);
+    text-align: center;
+}
+/* --- 全体のBOX定義 ---------------------------------------- */
+
+/* --- 背景の指定 ------------------------------------------- */
+.conA .bgImg {
+    position   : absolute;
+    top        : 0;
+    left       : 0;
+    bottom     : 0;
+    right      : 0;
+    opacity    : 0;
+    animation  : bgAnime 24s infinite;   /* 4画像 × 各6s = 24s */
+}
+
+/* --- 段差で背景画像のアニメーションを実行 ----------------- */
+.conA .src1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), image-url('home1.png');   /* 背景の画像を指定 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.conA .src2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), image-url('home2.png');;   /* 背景の画像を指定 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation-delay  : 6s;
+}
+.conA .src3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), image-url('home3.jpg');;   /* 背景の画像を指定 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation-delay  : 12s;
+}
+.conA .src4 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), image-url('home4.jpg');;   /* 背景の画像を指定 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation-delay  : 18s;
+}
+
+@keyframes bgAnime {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    25% { opacity: 1; }
+    35% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* --- 前面の文字定義（サンプルのため変更してください） ----- */
+.conA .logoh {
+  position   : absolute;
+  display    : inline-block;
+  padding    : 20px;
+  color      : #fff;
+  top        : 50%;                               /* 中央寄せ */
+  left       : 50%;
+  transform  : translate(-50%,-50%);
+  z-index    : 11;
+}
+
+.conA h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Kosugi Maru', sans-serif;
+    font-size: 5vw;
+    letter-spacing: 0.2em;
+    margin-left: 0.2em;
+}
+
+.conA p{
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+@media (min-width: 768px) {
+    .conA h1 {
+        font-size: 50px;
+    }
+    
+    .conA p {
+        font-size: 24px;
+    }
+}
+
+.logo {
+    width: 20%;
+    min-width: 120px;
+    min-height: 120px;
+    max-height: 180px;
+    max-width: 180px;
+}
+
+.conB {
+    background-color: #575344;
+    /* background-image: image-url('bean_listing.jpg'); */
+    background-position: center;
+    background-size: cover;
+}
+
+.conB .icon {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 40px;
+    width: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #ddd;
+    background-color: var(--icon-bk-color);
+    color: #fff;
+    color: var(--icon-color);
+}
+
+.conB a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background: #BF6A7A;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.conB .text {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 50px;
+}
+
+.conC {
+    background-color: #807AA9;
+}
+

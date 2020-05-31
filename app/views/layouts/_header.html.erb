@@ -1,5 +1,5 @@
-<header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <%= link_to 'Cafe Searching Engine', root_path, class: "navbar-brand" %>
+<header class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+        <%= link_to 'KOFFIERS', root_path, class: "navbar-brand" %>
         <button
             class = "navbar-toggler"
             type = "button"
@@ -15,18 +15,18 @@
         <div class= "collapse navbar-collapse" id= "navbarSupportedContent">
             <ul class = "navbar-nav ml-auto">
                 <li id="menu-item-444" class="menu-item mr-2">
-                    <%= link_to "About", about_path, class:"btn btn-outline-secondary"%>
+                    <%= link_to "About", about_path, style: 'color:#FFFFFF;' ,class:"btn btn-outline-secondary"%>
                 </li>
                 <li id="menu-item-444" class="menu-item mr-2">
-                    <%= link_to "Cafe List", cafe_lists_path, class:"btn btn-outline-secondary" %>
+                    <%= link_to "Cafe List", cafe_lists_path, style: 'color:#FFFFFF;', class:"btn btn-outline-secondary" %>
                 </li>
                 <li id="menu-item-444" class="menu-item mr-2">
-                    <%= link_to "About the Beans", beans_path, class:"btn btn-outline-secondary" %>
+                    <%= link_to "About the Beans", beans_path, style: 'color:#FFFFFF;', class:"btn btn-outline-secondary" %>
                 </li>
                 <%  if user_signed_in?  %>
                     <div class="dropdown show mr-2">
                       <li class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        プロフィール画像
+                        <%= image_tag current_user.profileimage.variant(resize_to_limit: [48, 48]) %>
                       </li>
                     
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
