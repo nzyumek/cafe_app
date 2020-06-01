@@ -24,44 +24,47 @@
 
 
 <section class="conB">
-  <div class="container pt-5 pb-3">
-    <div class="text">
-      <span class="fas fa-coffee icon"></span>
-      <h2>KOFFIERSとは</h2>
-      <p>カフェを検索したいとき、特別な一杯を飲みたいとき、簡単に検索できるサイトです。</p>
-      <a href="about">About</a>
+  <div class="conB-A">
+    <div class="container pt-5 pb-3">
+      <div class="text">
+        <span class="fas fa-coffee icon"></span>
+        <h2>KOFFIERSとは</h2>
+        <p>カフェを検索したいとき、特別な一杯を飲みたいとき、簡単に検索できるサイトです。</p>
+        <a href="about">About</a>
+      </div>
     </div>
   </div>
-</section>
 <!--おすすめカフェ　カード-->
 <!--ループ書く-->
 
 
-<section class="conC">
-  <div class="container pt-5 pb-3">
-    <h3>あなたにぴったりのカフェ</h3>
-    <div class="row row-eq-height">
-      <% @cafe_lists_card.each do |cafe_list| %>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <a href="cafe_lists/<%= cafe_list.id %>">
-              <% if cafe_list.cafe_list_images.blank? %>
-                <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' , :class => 'thumbnail' %>
-              <% else %>
-                <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]), :class => 'thumbnail' %>
-              <% end %>
-            </a>
-            <div class="card-body">
+
+  <div class="conB-B">
+    <div class="container pt-5 pb-3">
+      <h3>あなたにぴったりのカフェ</h3>
+      <div class="row row-eq-height home-card-height">
+        <% @cafe_lists_card.each do |cafe_list| %>
+          <div class="col-md-4 mb-3">
+            <div class="card">
               <a href="cafe_lists/<%= cafe_list.id %>">
-                <h5 class="card-title text-dark"><%= cafe_list.title %></h5>
+                <% if cafe_list.cafe_list_images.blank? %>
+                  <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '348', :height => 'auto' , :class => 'thumbnail' %>
+                <% else %>
+                  <%= image_tag cafe_list.cafe_list_images[0].variant(resize_to_limit: [348, 400]), :class => 'thumbnail' %>
+                <% end %>
               </a>
-              <p class="card-text"><%= cafe_list.info %></p>
-              <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">More</a>
+              <div class="card-body">
+                <a href="cafe_lists/<%= cafe_list.id %>">
+                  <h5 class="card-title text-dark"><%= cafe_list.title %></h5>
+                </a>
+                <p class="card-text"><%= cafe_list.info %></p>
+                <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">More</a>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>     
+        <% end %>     
+      </div>
+      <a href="cafe_lists">もっと見る</a>
     </div>
-    <a href="cafe_lists">もっと見る</a>
   </div>
 </section>  

@@ -40,8 +40,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    // height: calc(100vh - 60px); // 参考まで
-    height: 100vh;
+    height: calc(100vh - 60px); // 参考まで
+    //height: 100vh;
     margin: 0px !important;
     /* background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(makbanner.JPG); */
     background-position: center;
@@ -146,13 +146,16 @@
 }
 
 .conB {
+}
+
+.conB-A {
     background-color: #575344;
     /* background-image: image-url('bean_listing.jpg'); */
     background-position: center;
     background-size: cover;
 }
 
-.conB .icon {
+.conB-A .icon {
     display: inline-block;
     margin-bottom: 20px;
     font-size: 40px;
@@ -166,7 +169,7 @@
     color: var(--icon-color);
 }
 
-.conB a {
+.conB-A a {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 30px;
@@ -180,12 +183,37 @@
     text-decoration: none;
 }
 
-.conB .text {
+.conB-A .text {
     background-color: rgba(255, 255, 255, 0.5);
-    padding: 50px;
+    padding: 25px;
 }
 
-.conC {
+.conB-B {
     background-color: #807AA9;
 }
 
+
+@media(min-width: 768px) {
+    .conB  {
+        display: flex;
+        flex-direction: column;
+        height: calc( (100vh -60px));
+    }
+    
+    .conB-A {
+        flex: 2;
+    }
+    
+    .conB-B {
+        flex: 3;
+    }
+    
+    .conB-A .container {
+        height: calc((100vh - 60px) * 40% );
+    }
+    
+    .conB-B .container {
+    height: calc((100vh - 60px) * 60% );
+    }
+
+}
