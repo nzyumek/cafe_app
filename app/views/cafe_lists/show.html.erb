@@ -1,4 +1,4 @@
-<h3><%= @cafe_list.title %></h3>
+
 <div class="row">
     <div class="col-md-12">
       <% if @cafe_list.cafe_list_images[0].blank? %>
@@ -12,87 +12,101 @@
 
 <ul class="list-group">
       <div class="col-md-12 col-lg-8 offset-lg-2">
-        <li class="list-group-item">
-        店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></br>
+        <li class="list-group-item title">
+          <div class="text">
+            店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></div></li>
+        <li class="list-group-item"><div class="text">
+        住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></div></br>
         <div class="google_map">
         <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @cafe_list.title %>" width="auto" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div></br>
-        アクセス: 
+        <div class="text">アクセス: 
         <% if @cafe_list.access.blank? %>
           N/A
         <% else %>  
-          <%= safe_join(@cafe_list.access.split("\n"),tag(:br)) %><% end %></li>
-        <li class="list-group-item">
+          <%= safe_join(@cafe_list.access.split("\n"),tag(:br)) %><% end %></div></li>
+        <li class="list-group-item"><div class="text">
         営業時間: 
         <% if @cafe_list.openingtime1.blank? %>
           不明
         <% else %> 
-          <%= @cafe_list.openingtime1 %>:<%= @cafe_list.openingtime2 %> ~ <%= @cafe_list.closingtime1 %>:<%= @cafe_list.closingtime2 %><% end %></br>
-        定休日: <%= @cafe_list.dayoff %></li>
-        <li class="list-group-item">
+          <%= @cafe_list.openingtime1 %>:<%= @cafe_list.openingtime2 %> ~ <%= @cafe_list.closingtime1 %>:<%= @cafe_list.closingtime2 %><% end %></div></br>
+        <div class="text">定休日: <%= @cafe_list.dayoff %></div></li>
+        <li class="list-group-item"><div class="text">
         電話番号: 
         <% if @cafe_list.firsttel.blank? %>
           N/A
         <% else %>  
-        <%= @cafe_list.firsttel %>-<%= @cafe_list.midtel %>-<%= @cafe_list.lasttel %><% end %></br>
-        予約: <%= @cafe_list.reservation %></br>
-        Url: <a href="<%= @cafe_list.url %>" class="text-primary"><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></li>
+        <%= @cafe_list.firsttel %>-<%= @cafe_list.midtel %>-<%= @cafe_list.lasttel %><% end %></div></br>
+        <div class="text">予約: <%= @cafe_list.reservation %></div></br>
+        <div class="text">Url: <a href="<%= @cafe_list.url %>" class="text-primary"><%= safe_join(@cafe_list.url.split("\n"),tag(:br)) %></a></div></li>
         <li class="list-group-item">
-        環境: <%= safe_join(@cafe_list.envir.split("\n"),tag(:br)) %></br>
-        Wifi: <%= @cafe_list.wifi %></br>
-        駐車場: <%= @cafe_list.parking %></br>
-        キャッシュレス決済: <%= render partial: "cafe_lists/cashlesstag", collection: @cafe_list.cashlesstags, as: :cashlesstag %></li>
-        <li class="list-group-item">
-        豆の種類: <%= render partial: "cafe_lists/beantag", collection: @cafe_list.beantags, as: :beantag %></br>
-        店の特色: <%= safe_join(@cafe_list.info.split("\n"),tag(:br)) %></li>
-        <li class="list-group-item">
-        Last Update at <%= l @cafe_list.updated_at %> <!--by <#%= @cafe_list.user.name %>--></li>
+        <div class="text">環境: <%= safe_join(@cafe_list.envir.split("\n"),tag(:br)) %></div></br>
+        <div class="text">Wifi: <%= @cafe_list.wifi %></div></br>
+        <div class="text">駐車場: <%= @cafe_list.parking %></div></br>
+        <div class="text">キャッシュレス決済: <%= render partial: "cafe_lists/cashlesstag", collection: @cafe_list.cashlesstags, as: :cashlesstag %></div></li>
+        <li class="list-group-item"><div class="text">
+        豆の種類: <%= render partial: "cafe_lists/beantag", collection: @cafe_list.beantags, as: :beantag %></div></br>
+        <div class="text">店の特色: <%= safe_join(@cafe_list.info.split("\n"),tag(:br)) %></div></li>
+        <li class="list-group-item"><div class="text">
+        Last Update at <%= l @cafe_list.updated_at %> <!--by <#%= @cafe_list.user.name %>--></div></li>
       </div>
 </ul>
 
 <div class="row">
-  <div class="col-md-12 col-lg-6 offset-lg-3">
-    最新の口コミ<br />
-    
-    <% if !@review.blank? %>
-      <div class="row reviews">
-
-        <div class="col-md-6 mb-3">
-          <div class=" reviews-content">
-  
-            <h4 class="mb-3">評価：<%= @review.rate %>点 | 
-            <% if @review.title.blank? %> no title
-            <% else %>
-            <%= @review.title %>
-            <% end %></h4>
-            <p><%= safe_join(@review.content.split("\n"),tag(:br)) %></p>
+  <div class="container">
+    <div class="col-md-12 col-lg-10 offset-lg-1">
+      <h2>最新の口コミ</h2>
+      
+      <% if !@review.blank? %>
+          <div class="row reviews">
+      
+            <div class="col-md-6 mb-3">
+              <div class=" reviews-content">
+      
+      
+                <h4 class="mb-3">評価：<%= @review.rate %>点 | <%= @review.title %><br/>
+                by <%= @review.user.name %>
+                </h4>
+                
+      
+                <!--星評価-->
+               <div id="star-rate-<%= @review.id %>"></div>
+                <script>
+                  $('#star-rate-<%= @review.id %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= @review.rate %>,
+                  });
+                </script>    
+              <!--/星評価-->
+      
+                <p><%= safe_join(@review.content.split("\n"),tag(:br)) %></p>
+              </div>
+            </div>
             <div class="col-md-4">
-              <% if @review.review_images.blank? %>
-                <%= image_tag 'https://chugakujuken.net/wp-content/uploads/2018/12/noimage.png', :width => '500', :height => 'auto', :class => 'd-block mx-auto' %>
-              <% else %>
+              <a href="<%= @cafe_list.id %>/reviews">
                 <% @review.review_images.each do |image| %>
                   <%= image_tag image.variant(resize_to_limit: [250, 250]) %>
                 <% end %>
-              <% end %>
+              </a>
+              </br>
             </div>
-  
-            <!--星評価-->
-
-          <!--/星評価-->
-            <p><%#= @review.content %></p>
+            
           </div>
-        </div>
-      </div>
-    <% end %>  
-    
-    <%= link_to 'More', cafe_list_reviews_path(@cafe_list) %>
+      <% end %>  
+      
+      <%= link_to 'More', cafe_list_reviews_path(@cafe_list) %>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12 col-lg-6 offset-lg-3">
-    Gallery:
+    <h2>Gallery:</h2>
   </div>
 </div>
 
@@ -139,12 +153,13 @@
   </a>
 </div>
 
-<% if @cafe_list.user == current_user %>
-  <td><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></td><br/>
-  <td><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% elsif admin_signed_in? %>
-  <td><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></td><br/>
-  <td><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>
-</br>
-<%= link_to '戻る', cafe_lists_path %>
+<div class="container pb-3">
+  <% if @cafe_list.user == current_user %>
+    <button type="button" class="btn btn-dark"><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></button>
+    <button type="button" class="btn btn-dark"><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+  <% elsif admin_signed_in? %>
+    <button type="button" class="btn btn-dark"><%= link_to '編集', edit_cafe_list_path(@cafe_list) %></button>
+    <button type="button" class="btn btn-dark"><%= link_to '削除', @cafe_list, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+  <% end %>
+  <button type="button" class="btn btn-dark"><%= link_to '戻る', cafe_lists_path %></button>
+</div>

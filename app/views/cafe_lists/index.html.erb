@@ -1,5 +1,5 @@
-<h1>Cafes</h1>
 
+<section class="cafe-list">
   <table class="table">
     <thead>
       <nav class="navbar navbar-light bg-light">
@@ -48,20 +48,29 @@
               <a href="cafe_lists/<%= cafe_list.id %>">
                 <h5 class="card-title text-dark"><%= cafe_list.title %></h5>
               </a>
-              <p class="card-text"><%= cafe_list.info %></p>
+              <p class="card-text line-clamp"><%= cafe_list.info %></p>
               <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">More</a>
             </div>
           </div>
         </div>
-      <% end %>     
+      <% end %>
     </div>
   </div>
-  <%= paginate(@cafe_lists) %>
-  <% end %>
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'カフェを登録', new_cafe_list_path %>
-<% elsif admin_signed_in?%>
-<% else %>
-  <%= link_to 'ログインし、カフェを登録', new_user_session_path %>
-<% end %>
+  
+  
+  <div class="container">
+    <div class= "page">
+      <%= paginate(@cafe_lists) %></div>
+      <% end %>
+      <br>
+      <div class="new-cafe">
+      <% if user_signed_in? %>
+        <%= link_to 'カフェを登録', new_cafe_list_path %>
+      <% elsif admin_signed_in?%>
+      <% else %>
+        <%= link_to 'ログインし、カフェを登録', new_user_session_path %>
+      <% end %>
+      </div>
+  </div>
+<br>  
+</section>

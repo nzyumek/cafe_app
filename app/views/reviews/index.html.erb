@@ -1,51 +1,67 @@
 <h1><%= @cafe_list.title %> のレビュー</h1>
-<% if @reviews.present? %>
-  <% @reviews.each do |review| %>
-    <div class="row reviews">
 
-      <div class="col-md-6 mb-3">
-        <div class=" reviews-content">
-
-
-          <h4 class="mb-3">評価：<%= review.rate %>点 | <%= review.title %><br/>
-          by <%#= @user.name %>
-          </h4>
-          
-
-          <!--星評価-->
-
-        <!--/星評価-->
-
-          <p><%= safe_join(review.content.split("\n"),tag(:br)) %></p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <% review.review_images.each do |image| %>
-          <%= image_tag image.variant(resize_to_limit: [250, 250]) %>
-        <% end %>
-        </br>
-        Lastest Update: <%= l review.updated_at %> by <%= review.user.name %>
-      </div>
-      <% if review.user == current_user %>
-        <div class="col-md-12 edit-button">
-            <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
-            <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
-        </div>
-      <% elsif admin_signed_in? %>
-        <div class="col-md-12 edit-button">
-            <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
-            <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
+<section class="review-content">
+  <div class="container">
+    <% if @reviews.present? %>
+      <% @reviews.each do |review| %>
+        <div class="row reviews">
+    
+          <div class="col-md-6 mb-3">
+            <div class=" reviews-content">
+    
+    
+              <h4 class="mb-3">評価：<%= review.rate %>点 | <%= review.title %><br/>
+              by <%= review.user.name %>
+              </h4>
+              
+    
+              <!--星評価-->
+             <div id="star-rate-<%= review.id %>"></div>
+              <script>
+                $('#star-rate-<%= review.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= review.rate %>,
+                });
+              </script>    
+            <!--/星評価-->
+    
+              <p><%= safe_join(review.content.split("\n"),tag(:br)) %></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <% review.review_images.each do |image| %>
+              <%= image_tag image.variant(resize_to_limit: [250, 250]) %>
+            <% end %>
+            </br>
+            Lastest Update: <%= l review.updated_at %> by <%= review.user.name %>
+          </div>
+          <% if review.user == current_user %>
+            <div class="col-md-12 edit-button">
+                <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
+                <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
+            </div>
+          <% elsif admin_signed_in? %>
+            <div class="col-md-12 edit-button">
+                <%= link_to '口コミを編集', edit_cafe_list_review_path(@cafe_list_id, review.id), class:'btn btn-default' %>
+                <%= link_to '口コミを削除', cafe_list_review_path(@cafe_list_id, review.id), method: :delete %>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
-  <% end %>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= link_to '口コミを投稿', new_cafe_list_review_path(@cafe_list_id) %>
-<% elsif admin_signed_in? %>
-<% else %>
-  <%= link_to 'ログインし、口コミを投稿', new_user_session_path %>
-<% end %>
-</br>
-<%= link_to '戻る', cafe_list_path(@cafe_list_id) %>
+    <% end %>
+    
+    <% if user_signed_in? %>
+      <%= link_to '口コミを投稿', new_cafe_list_review_path(@cafe_list_id) %>
+    <% elsif admin_signed_in? %>
+    <% else %>
+      <%= link_to 'ログインし、口コミを投稿', new_user_session_path %>
+    <% end %>
+    </br>
+    <%= link_to '戻る', cafe_list_path(@cafe_list_id) %>
+  </div>
+</section>

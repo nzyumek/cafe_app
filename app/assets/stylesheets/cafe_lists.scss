@@ -26,3 +26,32 @@
   height: auto;
   max-width: 100%;
 }
+
+.list-group-item {
+  font-size: 15px;
+  padding: 20px !important;
+}
+
+li.title {
+  font-size: 25px;
+}
+
+li > .text {
+  padding-bottom: 5px;
+}
+
+.page {
+  text-align: center;
+}
+
+.new-cafe {
+  text-align: right;
+}
+
+.table {
+  margin-bottom: 0 !important;
+}
+
+.cafe-list {
+  min-height: calc(100vh - 120px);
+}

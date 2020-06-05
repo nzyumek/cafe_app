@@ -197,7 +197,8 @@
     .conB  {
         display: flex;
         flex-direction: column;
-        height: calc( (100vh -60px));
+        // height: calc(100vh - 60px);
+        min-height: calc(100vh - 120px);
     }
     
     .conB-A {
@@ -217,3 +218,11 @@
     }
 
 }
+
+pre {
+  font-size: .75em;
+  background: rgb(171, 169, 162) !important; 
+  padding: 20px;
+  width: 100%;
+}
+

@@ -8,7 +8,8 @@
 
 main {
   // height: calc(100vh - 50px);
-  min-height: calc(100vh - 60px - 60px);//0409修正
+  // min-height: calc(100% + 60px);//0409修正
+  margin-top: 60px;
   // padding-top: 60px
 }
 
@@ -19,7 +20,7 @@ body {
 
 header {
   height: 60px;
-  background: rgba(255, 255, 255, 0.5) !important;
+  background: transparent;
 }
 
 // .header > .navbar {
@@ -76,10 +77,21 @@ header {
 .card-img-top {
     width: 340px;
     flex-shrink:0;
-    height: 340px;
+    height: 200px;
     object-fit: contain;
  }
  
+ .card-body {
+   height: 40%;
+ }
+ 
+ .line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden; 
+}
+
 .thumbnail {
     display: inline-block; /* ここがポイント */
     width: 348px;
@@ -97,3 +109,40 @@ header {
   max-width: 100%;
   object-fit: contain; /* トリミングせずに余白を表示する */
 }
+
+
+.container-fluid {
+  //height: calc(100vh - 60px);
+}
+
+/*delighter animation */
+
+.delighter.splash {
+    transition: all 2s ease-out;
+}
+
+.delighter.splash.ended {
+    background: #212529;
+}
+
+.delighter.left { transform:translate(100%); opacity:0; transition: all .75s ease-out; }
+.delighter.left.started { transform:none; opacity:1; }
+
+.delighter .box { transition: all 1s ease-out; }
+.delighter .box:nth-child(1) { transform: translate(-100%, 0); }
+.delighter .box:nth-child(2) { transform: translate(170%, -70%); }
+.delighter .box:nth-child(3) { transform: translate(20%, 0%); }
+
+.delighter.started .box:nth-child(1) { transform: translate(0, 0); }
+.delighter.started .box:nth-child(2) { transform: translate(70%, -70%); }
+.delighter.started .box:nth-child(3) { transform: translate(20%, -120%); }
+
+.delighter pre {  
+  display: block; transition: all 2s ease-out; opacity: 0;
+  padding: 20px 0;
+  width: 1px; overflow: hidden;
+}
+.delighter.started pre {
+  max-width: 99999px; width: 100%; opacity: 1;
+}
+

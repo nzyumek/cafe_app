@@ -1,4 +1,4 @@
-<h1>Editing Cafe</h1>
+<h1><%= @cafe_list.title %>の情報を編集</h1>
 
 <%= form_with(model: @cafe_list, url: cafe_list_path, local: true) do |form| %>
     <%= render :partial => 'form', :locals => {:form => form, :edit_flag => true}, post: @cafe_lists %>

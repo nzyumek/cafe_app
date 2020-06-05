@@ -1,3 +1,23 @@
 // Place all the styles related to the beans controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.box {
+  position: relative;
+  width: 50%; height: 30vh;
+  background: #ec484d; margin: 10px; box-shadow: 0 0 10px rgba(0,0,0,.3);
+  text-align: center;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 10px;
+}
+.box:nth-child(2) { background: #f8c82d; }
+.box:nth-child(3) { background: #0aba58; }
+
+pre {
+  font-size: .75em;
+  background: #222; color: #fff;
+  padding: 20px;
+  width: 100%;
+}
+

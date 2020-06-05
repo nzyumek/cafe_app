@@ -1,4 +1,4 @@
-<h1>New Cafe</h1>
+<h1>新規作成</h1>
 
 <%= form_with(model: @cafe_list, url: cafe_lists_path, local: true) do |form| %>
     <%= render :partial => 'form', :locals => {:form => form}, post: @cafe_lists %>

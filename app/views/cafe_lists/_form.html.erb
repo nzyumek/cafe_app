@@ -1,3 +1,6 @@
+  <div class="container">
+    <div class="col-md-12">
+  
   <% if @cafe_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cafe_list.errors.count, "error") %> prohibited this @cafe_list from being saved:</h2>
@@ -96,4 +99,6 @@
 
   <div class="actions">
     <%= form.submit class: "btn btn-primary" %>
+  </div>
+  </div>
   </div>

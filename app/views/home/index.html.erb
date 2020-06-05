@@ -11,25 +11,24 @@
       <%= image_tag 'mak_logo.png', class: 'logo' %>
       <h1>KOFFIERS</h1>
       <p>カフェ検索サイト</p>
-      <form class="form-inline">
-          <%= form_with(url: cafe_lists_path, model: @cafe_list, local: true, method: :get) do |f| %>
+
+          <%= form_with(url: cafe_lists_path, model: @cafe_list, local: true, method: :get, class: "form-inline") do |f| %>
             <%= f.text_field :title ,class: "form-control mr-sm-2", 
             placeholder: "店名、場所を入力"%>
             <%= f.submit 'Search', :name => nil , class: "btn btn-outline-success"%>
           <% end %>
-      </form>
+
     </div>
 </section>
 
 
 
-<section class="conB">
+<section class="conB delighter" data-delighter>
   <div class="conB-A">
     <div class="container pt-5 pb-3">
       <div class="text">
-        <span class="fas fa-coffee icon"></span>
         <h2>KOFFIERSとは</h2>
-        <p>カフェを検索したいとき、特別な一杯を飲みたいとき、簡単に検索できるサイトです。</p>
+        <pre>カフェを検索したいとき、特別な一杯を飲みたいとき、簡単に検索できるサイトです。</pre>
         <a href="about">About</a>
       </div>
     </div>
@@ -40,7 +39,7 @@
 
 
   <div class="conB-B">
-    <div class="container pt-5 pb-3">
+    <div class="container pt-3 pb-3">
       <h3>あなたにぴったりのカフェ</h3>
       <div class="row row-eq-height home-card-height">
         <% @cafe_lists_card.each do |cafe_list| %>
@@ -57,7 +56,7 @@
                 <a href="cafe_lists/<%= cafe_list.id %>">
                   <h5 class="card-title text-dark"><%= cafe_list.title %></h5>
                 </a>
-                <p class="card-text"><%= cafe_list.info %></p>
+                <p class="card-text line-clamp"><%= cafe_list.info %></p>
                 <a href="cafe_lists/<%= cafe_list.id %>" class="text-dark">More</a>
               </div>
             </div>
