@@ -11,6 +11,7 @@ class CafeList < ApplicationRecord
     has_many :beantags, through: :cafe_list_beantags
     accepts_nested_attributes_for :cafe_list_beantags
     
+    
     VALID_TEL_REGEX = /\A[0-9]+\z/
     validates :firsttel, :midtel, :lasttel, format: { with: VALID_TEL_REGEX }
     

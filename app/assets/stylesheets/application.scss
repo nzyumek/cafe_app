@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require easy-autocomplete
  *= require_self
  */
 
@@ -23,3 +24,6 @@
 
 @import "forms";
 @import "devise";
+
+
+@import 'easy-autocomplete/dist/easy-autocomplete';

@@ -110,6 +110,9 @@ header {
   object-fit: contain; /* トリミングせずに余白を表示する */
 }
 
+.row {
+  width: 100%;
+}
 
 .container-fluid {
   //height: calc(100vh - 60px);
@@ -137,12 +140,12 @@ header {
 .delighter.started .box:nth-child(2) { transform: translate(70%, -70%); }
 .delighter.started .box:nth-child(3) { transform: translate(20%, -120%); }
 
-.delighter pre {  
+.delighter p {  
   display: block; transition: all 2s ease-out; opacity: 0;
   padding: 20px 0;
   width: 1px; overflow: hidden;
 }
-.delighter.started pre {
+.delighter.started  p {
   max-width: 99999px; width: 100%; opacity: 1;
 }
 

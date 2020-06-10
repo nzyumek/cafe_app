@@ -14,7 +14,7 @@
 
           <%= form_with(url: cafe_lists_path, model: @cafe_list, local: true, method: :get, class: "form-inline") do |f| %>
             <%= f.text_field :title ,class: "form-control mr-sm-2", 
-            placeholder: "店名、場所を入力"%>
+            placeholder: "店名、場所を入力"%><%#= autocomplete_field_tag 'cafe_list[title]', nil,  autocomplete_cafe_list_title_users_path %>
             <%= f.submit 'Search', :name => nil , class: "btn btn-outline-success"%>
           <% end %>
 
@@ -23,7 +23,7 @@
 
 
 
-<section class="conB delighter" data-delighter>
+<section class="conB">
   <div class="conB-A">
     <div class="container pt-5 pb-3">
       <div class="text">

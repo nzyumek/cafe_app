@@ -14,7 +14,8 @@
       <div class="col-md-12 col-lg-8 offset-lg-2">
         <li class="list-group-item title">
           <div class="text">
-            店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %></div></li>
+            店名: <%= safe_join(@cafe_list.title.split("\n"),tag(:br)) %>
+            </div></li>
         <li class="list-group-item"><div class="text">
         住所: <%= @cafe_list.prefecture %><%= @cafe_list.ward %><%= @cafe_list.location %></div></br>
         <div class="google_map">

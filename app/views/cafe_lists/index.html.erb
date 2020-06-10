@@ -1,38 +1,37 @@
-
 <section class="cafe-list">
+  <nav class="navbar navbar-light bg-light">
+    <%= form_with(url: cafe_search_cafe_lists_path, model: @cafe_list, local: true, method: :get) do |f| %>
+      <%= f.text_field :title,  'data-behavior': 'autocomplete' %>
+      <%= f.text_field :bean %>
+      <%= f.text_field :location %>
+      <%= f.submit 'Search', :name => nil %>
+    <% end %>
+                  
+    <%= link_to 'Clear', cafe_lists_path %>
+  </nav>
+  <% if admin_signed_in? %>
   <table class="table">
     <thead>
-      <nav class="navbar navbar-light bg-light">
 
-          <%= form_with(url: cafe_lists_path, model: @cafe_list, local: true, method: :get) do |f| %>
-            <%= f.text_field :title %>
-            <%= f.text_field :bean %>
-            <%= f.text_field :location %>
-            <%= f.submit 'Search', :name => nil %>
-          <% end %>
-                    
-          <%= link_to 'Clear', cafe_lists_path %>
-          
-      </nav>
-      <% if admin_signed_in? %>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Title</th>
-        <th scope="col">Bean</th>
-        <th scope="col">Location</th>
-        <th scope="col">Action(admin)</th>
-        <th scope="col">Latest Update</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render @cafe_lists %>
-    </tbody>
-  </table>
-  <%= paginate(@cafe_lists) %>
+  
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Title</th>
+          <th scope="col">Bean</th>
+          <th scope="col">Location</th>
+          <th scope="col">Action(admin)</th>
+          <th scope="col">Latest Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @cafe_lists %>
+      </tbody>
+    </table>
+    <%= paginate(@cafe_lists) %>
   
   <% else %>
   
-   <div class="container mt-5">
+  <div class="container mt-5">
     <div class="row row-eq-height">
       <% @cafe_lists.each do |cafe_list| %>
         <div class="col-md-4 mb-3">
@@ -61,7 +60,7 @@
   <div class="container">
     <div class= "page">
       <%= paginate(@cafe_lists) %></div>
-      <% end %>
+  <% end %>
       <br>
       <div class="new-cafe">
       <% if user_signed_in? %>

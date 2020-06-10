@@ -13,24 +13,33 @@ class CafeListsController < ApplicationController
       #@cafe_lists = CafeList.all
     ##@search_params = cafe_list_search_params
     ##@cafe_lists = Cafe_list.search(@search_params).includes(:prefecture)
-    
-    #三項演算子20200226
+        #三項演算子20200226
     params[:title].blank? ? params[:title]="" : params[:title]
     params[:bean].blank? ? params[:bean]="" : params[:bean]
     params[:location].blank? ? params[:location]="" : params[:location]
     
     @cafe_lists_results = CafeList.where("title LIKE ? AND bean LIKE ? AND location LIKE ?", "%" + params[:title] + "%", "%" + params[:bean] + "%", "%" + params[:location] + "%")
     @cafe_lists = @cafe_lists_results.page(params[:page]).per(6).order(:id)
+
     #elsif params[:bean]
       #  @cafe_lists = CafeList.where("bean LIKE ?", "%" + params[:bean] + "%")
     #elsif params[:location]
      #   @cafe_lists = CafeList.where("location LIKE ?", "%" + params[:location] + "%")
   end
   
-  #def search
+  def autocomplete
+    all_tags = Review.tag_counts_on(:tags) #全てのタグを取得
+    tags_name = all_tags.where('name LIKE(?)', "#{params[:term]}%").pluck(:name) #tagsテーブルのnameカラムを前方一致で取得
+    render json: tags_name.to_json #前方一致で取得した値をjsonにする
+  end
+
+  def cafe_search
     #  @cafe_lists = CafeList.where("title LIKE ?", "%" + params[:q] + "%")
    #   @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ?", "%" + params[:q] + "%", "%" + params[:b] + "%")
-  #end
+      #三項演算子20200226
+    q = params[:q].downcase
+    @cafe_lists = CafeList.where("title ILIKE ? or location ILIKE ?", "%#{q}%", "%#{q}%").limit(5)
+  end
 
   # def cafe_list_search_params
     # params.fetch(:search, {}).permit(:title, :bean, :location)
@@ -122,7 +131,10 @@ class CafeListsController < ApplicationController
     def cafe_list_params
       params.require(:cafe_list).permit(:title, :bean, :location, :url, :info, :access, :prefecture, :ward, :parking, :openingtime1, :openingtime2, :closingtime1, :closingtime2, :dayoff, :firsttel, :midtel, :lasttel, :envir, :wifi, :reservation, cashlesstag_ids: [], cafe_list_images: [], beantag_ids: [] )
     end
-
+    
+    def force_json
+      request.format = :json
+    end
     
     # def image_params
     #   params.require(:cafe_list_image).permit(:image_url[])

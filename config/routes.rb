@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   
   resources :cafe_lists do
     collection do
-      get 'search' => 'cafe_lists#search'
+      get 'cafe_search' => 'cafe_lists#cafe_search'
     end
+    get :autocomplete_cafe_list_title, on: :collection
     resources :reviews do
     end
     # TODO 0426
