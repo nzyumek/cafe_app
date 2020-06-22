@@ -2,6 +2,7 @@ class CafeListsController < ApplicationController
   #prepend_before_action :authenticate_user! && :authenticate_admin!, only: [:edit, :destroy] 
   before_action :set_cafe_list, only: [:show, :edit, :update, :destroy, :sort, :upload_file]
   before_action :set_current_user
+  before_action :force_json, only: :cafe_search
 
   # GET /cafe_lists
   # GET /cafe_lists.json
@@ -18,7 +19,8 @@ class CafeListsController < ApplicationController
     params[:bean].blank? ? params[:bean]="" : params[:bean]
     params[:location].blank? ? params[:location]="" : params[:location]
     
-    @cafe_lists_results = CafeList.where("title LIKE ? AND bean LIKE ? AND location LIKE ?", "%" + params[:title] + "%", "%" + params[:bean] + "%", "%" + params[:location] + "%")
+    @cafe_lists_results = CafeList.where("title LIKE ? OR bean LIKE ? OR location LIKE ?", "%" + params[:title] + "%", "%" + params[:bean] + "%", "%" + params[:location] + "%")
+    p "count: " + @cafe_lists_results.count.to_s
     @cafe_lists = @cafe_lists_results.page(params[:page]).per(6).order(:id)
 
     #elsif params[:bean]
@@ -29,7 +31,7 @@ class CafeListsController < ApplicationController
   
   def autocomplete
     all_tags = Review.tag_counts_on(:tags) #全てのタグを取得
-    tags_name = all_tags.where('name LIKE(?)', "#{params[:term]}%").pluck(:name) #tagsテーブルのnameカラムを前方一致で取得
+    tags_name = all_tags.where('title LIKE(?)', "#{params[:term]}%").pluck(:name) #tagsテーブルのnameカラムを前方一致で取得
     render json: tags_name.to_json #前方一致で取得した値をjsonにする
   end
 
@@ -38,7 +40,7 @@ class CafeListsController < ApplicationController
    #   @cafe_lists = CafeList.where("title LIKE ? AND bean LIKE ?", "%" + params[:q] + "%", "%" + params[:b] + "%")
       #三項演算子20200226
     q = params[:q].downcase
-    @cafe_lists = CafeList.where("title ILIKE ? or location ILIKE ?", "%#{q}%", "%#{q}%").limit(5)
+    @cafe_lists = CafeList.where("title LIKE ? or location LIKE ?", "%#{q}%", "%#{q}%").limit(5)
   end
 
   # def cafe_list_search_params
@@ -91,8 +93,8 @@ class CafeListsController < ApplicationController
       @cafe_list.cafe_list_images.detach
     #cafe_list_params[:image_url].each do |a|
       respond_to do |format|
-        if @cafe_list.update(cafe_list_params)#.clone.merge({image_url: a}))
-          cafe_lists_path and return
+        if @cafe_list.update(cafe_list_params)
+          redirect_to cafe_lists_path and return
         else
           format.html { render :edit }
           format.json { render json: @cafe_list.errors, status: :unprocessable_entity }

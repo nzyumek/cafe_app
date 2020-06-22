@@ -1,14 +1,14 @@
 class CafeList < ApplicationRecord
-    has_many :infos
-    has_many_attached :cafe_list_images
-    has_many :reviews
+    has_many :infos, :dependent => :destroy
+    has_many_attached :cafe_list_images, :dependent => :destroy
+    has_many :reviews, :dependent => :destroy
     belongs_to :user
     
-    has_many :cafe_list_cashlesstags
-    has_many :cashlesstags, through: :cafe_list_cashlesstags
+    has_many :cafe_list_cashlesstags, :dependent => :destroy
+    has_many :cashlesstags, through: :cafe_list_cashlesstags, :dependent => :destroy
     
-    has_many :cafe_list_beantags
-    has_many :beantags, through: :cafe_list_beantags
+    has_many :cafe_list_beantags, :dependent => :destroy
+    has_many :beantags, through: :cafe_list_beantags, :dependent => :destroy
     accepts_nested_attributes_for :cafe_list_beantags
     
     

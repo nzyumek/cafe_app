@@ -6,7 +6,7 @@ document.addEventListener("turbolinks:load", function() {
     url: function(phrase) {
       return "/cafe_lists/cafe_search.json?q=" + phrase;
     },
-    getValue: "name",
+    getValue: "title",
   };
 
   $input.easyAutocomplete(options);

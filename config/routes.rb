@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post 'inquiry/confirm' => 'inquiry#confirm'
   post 'inquiry/thanks' => 'inquiry#thanks'
   
-  resources :news
   namespace :admins do
     resources :cafe_lists
     resources :users
